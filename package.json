@@ -1,0 +1,62 @@
+{
+  "name": "nextjs-toploader",
+  "version": "1.0.0",
+  "description": "A Next.js Top Loading Bar component made using nprogress, works with Next.js 13.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "prepack": "npm run build",
+    "lint": "eslint --fix --cache src/",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheSGJ/nextjs-toploader.git"
+  },
+  "keywords": [
+    "Next",
+    "Next TopLoader",
+    "Next.js",
+    "Next.js 13",
+    "Nprogress",
+    "React",
+    "Top Loading Bar",
+    "Progressbar"
+  ],
+  "author": "Shri Ganesh Jha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheSGJ/nextjs-toploader/issues"
+  },
+  "homepage": "https://github.com/TheSGJ/nextjs-toploader#readme",
+  "files": [
+    "dist/**/*.js*",
+    "dist/**/*.mjs*",
+    "dist/**/*.d*"
+  ],
+  "devDependencies": {
+    "@types/eslint": "^8",
+    "@types/node": "^18.14.6",
+    "@types/prettier": "^2",
+    "@types/prop-types": "^15",
+    "@types/react": "^18",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
+    "eslint": "^8.35.0",
+    "next": "^13.2.3",
+    "prettier": "^2.8.4",
+    "react": "^18.2.0",
+    "tsup": "^6.6.3",
+    "typescript": "^4.9.5"
+  },
+  "peerDependencies": {
+    "next": ">= 6.0.0",
+    "react": ">= 16.0.0"
+  },
+  "packageManager": "yarn@3.2.4",
+  "dependencies": {
+    "prop-types": "^15.8.1"
+  }
+}

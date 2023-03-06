@@ -1,0 +1,6 @@
+{
+	"printWidth": 120,
+	"singleQuote": true,
+	"quoteProps": "as-needed",
+	"endOfLine": "lf"
+}
