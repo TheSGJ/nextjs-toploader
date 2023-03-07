@@ -1,16 +1,17 @@
-/* eslint-disable no-useless-escape */
-/* eslint-disable quotes */
 /**
  *
  * NextTopLoader
  *
  */
 
+/* eslint-disable no-useless-escape */
+/* eslint-disable quotes */
+
 import Script from 'next/script';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
-export interface NextTopLoadersProps {
+export interface NextTopLoaderProps {
   /**
    * Color for the TopLoader.
    * @default "#29d"
@@ -52,7 +53,8 @@ export interface NextTopLoadersProps {
    */
   speed?: number;
 }
-export default function NextTopLoader(props: NextTopLoadersProps) {
+
+const NextTopLoader = (props: NextTopLoaderProps) => {
   const color = '#29d';
   const height = 3;
   return (
@@ -121,7 +123,8 @@ export default function NextTopLoader(props: NextTopLoadersProps) {
       </Script>
     </>
   );
-}
+};
+export default React.memo(NextTopLoader);
 
 NextTopLoader.propTypes = {
   color: PropTypes.string,

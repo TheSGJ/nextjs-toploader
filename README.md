@@ -85,3 +85,5 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 - `height`: height of TopLoader in `px`.
 - `crawl`: auto increamenting behaviour for the TopLoader.
 - `showSpinner`: to show spinner or not.
+
+After passing the props reload the next.js server once in the browser, to see changes for `<NextTopLoader />` ( This is because NextTopLoader uses built-in history api in browser for indicating progress )
