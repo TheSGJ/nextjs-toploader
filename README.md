@@ -24,7 +24,26 @@ import using:
 import NextTopLoader from 'nextjs-toploader';
 ```
 
-### Usage with `pages/_app.js` for pages folder structure
+### Usage with `app/layout.js` for `app` folder structure
+
+For rendering add `<NextTopLoader />` to your `return()` inside the `<body></body>` of `RootLayout()`:
+
+```js
+import NextTopLoader from 'nextjs-toploader';
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <NextTopLoader />
+        {children}
+      </body>
+    </html>
+  );
+}
+```
+
+### Usage with `pages/_app.js` for `pages` folder structure
 
 For rendering add `<NextTopLoader />` to your `return()` in `MyApp()`:
 
@@ -46,7 +65,7 @@ export default function MyApp({ Component, pageProps }) {
 If no props are passed to `<NextTopLoader />`, below is the default configuration applied.
 
 ```jsx
-<NextNProgress
+<NextTopLoader
   color="#29D"
   initialPosition={0.08}
   crawlSpeed={200}
