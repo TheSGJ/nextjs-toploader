@@ -93,7 +93,32 @@ const NextTopLoader = (props: NextTopLoaderProps) => {
             ${props.speed ? `NProgress.configure({ speed: ${props.speed} });` : ''}
             let currentUrl = window.location.href;
             let newUrl = event.target.href;
-            if (newUrl === currentUrl) {
+            
+            function isAnchorOfCurrentUrl(currentUrl, newUrl) {
+              const currentUrlObj = new URL(currentUrl);
+              const newUrlObj = new URL(newUrl);
+
+              // Compare hostname, pathname, and search parameters
+              if (
+                currentUrlObj.hostname === newUrlObj.hostname &&
+                currentUrlObj.pathname === newUrlObj.pathname &&
+                currentUrlObj.search === newUrlObj.search
+              ) {
+                // Check if the new URL is just an anchor of the current URL page
+                const currentHash = currentUrlObj.hash;
+                const newHash = newUrlObj.hash;
+                return (
+                  currentHash !== newHash &&
+                  currentUrlObj.href.replace(currentHash, '') ===
+                    newUrlObj.href.replace(newHash, '')
+                );
+              }
+              return false;
+            }
+
+            const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
+
+            if (newUrl === currentUrl || isAnchor) {
                 NProgress.start();
                 let newUrl = event.target.href;
                 NProgress.done();
