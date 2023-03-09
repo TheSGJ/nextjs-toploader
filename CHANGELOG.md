@@ -26,3 +26,17 @@
 ### Updated
 
 - Removed unwanted `devDependancies` to reduce the package size
+
+## v1.2.1
+
+### Added
+
+- Added `nprogress` and `@types/nprogress` packages for the `dependencies`
+
+### Fixed
+
+- Fix the `newUrl` returning as `undefined` value for few anchor tags , added support to prevent loader from being stuck for anchor navigation for hash urls
+
+### Updated
+
+- Refactor the code in `useEffect` hook, removed the `next/script`

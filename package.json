@@ -1,12 +1,11 @@
 {
   "name": "nextjs-toploader",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "description": "A Next.js Top Loading Bar component made using nprogress, works with Next.js 13.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup",
-    "prepack": "npm run build",
+    "build-lib": "tsup",
     "lint": "eslint --fix --cache src/",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "typecheck": "tsc -p tsconfig.json"
@@ -39,21 +38,26 @@
   "devDependencies": {
     "@types/node": "^18.14.6",
     "@types/react": "^18",
+    "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
     "eslint": "^8.35.0",
     "next": "^13.2.3",
     "prettier": "^2.8.4",
     "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "tsup": "^6.6.3",
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
     "next": ">= 6.0.0",
-    "react": ">= 16.0.0"
+    "react": ">= 16.0.0",
+    "react-dom": ">= 16.0.0"
   },
   "packageManager": "yarn@3.2.4",
   "dependencies": {
+    "@types/nprogress": "^0.2.0",
+    "nprogress": "^0.2.0",
     "prop-types": "^15.8.1"
   }
 }
