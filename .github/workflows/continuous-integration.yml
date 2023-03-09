@@ -22,7 +22,7 @@ jobs:
           cache: yarn
           registry-url: https://registry.npmjs.org/
       - name: Install Dependencies
-        run: yarn --frozen-lockfile
+        run: yarn --immutable-cache
       - name: Run ESLint
         run: yarn lint --fix=false
 
@@ -41,6 +41,6 @@ jobs:
           cache: yarn
           registry-url: https://registry.npmjs.org/
       - name: Install Dependencies
-        run: yarn --frozen-lockfile
+        run: yarn --immutable-cache
       - name: Typecheck And Build Code
         run: yarn typecheck && yarn build-lib
