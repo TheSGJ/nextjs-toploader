@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build-lib": "tsup",
+    "build-lib": "tsup && sed -i '1s/^/\"use client\";/' dist/index.js",
     "lint": "eslint --fix --cache src/",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "typecheck": "tsc -p tsconfig.json"
