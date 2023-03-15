@@ -101,7 +101,7 @@ const NextTopLoader = (props: NextTopLoaderProps) => {
       navLink.addEventListener('click', (event: MouseEvent) => {
         let currentUrl = window.location.href;
         let newUrl = (event.currentTarget as HTMLAnchorElement).href;
-        let isExternalLink = Boolean((event.currentTarget as HTMLAnchorElement).target === "_blank");
+        let isExternalLink = (event.currentTarget as HTMLAnchorElement).target === "_blank";
         if (isExternalLink) return null;
         function isAnchorOfCurrentUrl(currentUrl: string, newUrl: string) {
           const currentUrlObj = new URL(currentUrl);
