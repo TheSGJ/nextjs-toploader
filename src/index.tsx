@@ -102,7 +102,6 @@ const NextTopLoader = (props: NextTopLoaderProps) => {
         let currentUrl = window.location.href;
         let newUrl = (event.currentTarget as HTMLAnchorElement).href;
         let isExternalLink = (event.currentTarget as HTMLAnchorElement).target === "_blank";
-        if (isExternalLink) return null;
         function isAnchorOfCurrentUrl(currentUrl: string, newUrl: string) {
           const currentUrlObj = new URL(currentUrl);
           const newUrlObj = new URL(newUrl);
@@ -123,7 +122,7 @@ const NextTopLoader = (props: NextTopLoaderProps) => {
           return false;
         }
         const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
-        if (newUrl === currentUrl || isAnchor) {
+        if (newUrl === currentUrl || isAnchor || isExternalLink) {
           NProgress.start();
           NProgress.done();
           [].forEach.call(npgclass, function (el: Element) {
