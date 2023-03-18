@@ -86,4 +86,6 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 - `crawl`: auto increamenting behaviour for the TopLoader.
 - `showSpinner`: to show spinner or not.
 
-After passing the props reload the your next.js page once in the browser, to see changes for `<NextTopLoader />` ( This is because NextTopLoader uses built-in history api in browser for indicating progress. )
+[![Sponsor me on GitHub](https://img.shields.io/badge/Sponsor%20me%20on-GitHub-brightgreen)](https://github.com/sponsors/TheSGJ)
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/thesgj)

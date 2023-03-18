@@ -40,3 +40,9 @@
 ### Updated
 
 - Refactor the code in `useEffect` hook, removed the `next/script`
+
+## v1.2.2
+
+### Fixed
+
+- Fix the Loader gets triggered on navigation to link in another tab
