@@ -46,3 +46,9 @@
 ### Fixed
 
 - Fix the Loader gets triggered on navigation to link in another tab
+
+## v1.3.2
+
+### Added
+
+- Added support for client side navigations
