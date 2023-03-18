@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 /**
  *
  * NextTopLoader
@@ -10,7 +12,7 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import * as NProgress from 'nprogress';
-export interface NextTopLoaderProps {
+export type NextTopLoaderProps = {
   /**
    * Color for the TopLoader.
    * @default "#29d"
@@ -115,38 +117,58 @@ const NextTopLoader = ({
 
     // eslint-disable-next-line no-var
     var npgclass = document.querySelectorAll('html');
-    let navLinks = document.querySelectorAll('a');
-    navLinks.forEach((navLink) => {
-      navLink.addEventListener('click', (event: MouseEvent) => {
-        let currentUrl = window.location.href;
-        let newUrl = (event.currentTarget as HTMLAnchorElement).href;
-        const isExternalLink = (event.currentTarget as HTMLAnchorElement).target === '_blank';
-
-        const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
-        if (newUrl === currentUrl || isAnchor || isExternalLink) {
-          NProgress.start();
-          NProgress.done();
-          [].forEach.call(npgclass, function (el: Element) {
-            el.classList.remove('nprogress-busy');
-          });
-        } else {
-          NProgress.start();
-          (function (history) {
-            // eslint-disable-next-line no-var
-            var pushState = history.pushState;
-            history.pushState = function () {
-              NProgress.done();
-              [].forEach.call(npgclass, function (el: Element) {
-                el.classList.remove('nprogress-busy');
-              });
-              // eslint-disable-next-line prefer-rest-params
-              return pushState.apply(history, arguments);
-            };
-          })(window.history);
+    function findClosestAnchor(element: HTMLElement | null): HTMLAnchorElement | null {
+      while (element && element.tagName.toLowerCase() !== 'a') {
+        element = element.parentElement;
+      }
+      return element as HTMLAnchorElement;
+    }
+    function handleClick(event: MouseEvent) {
+      try {
+        const target = event.target as HTMLElement;
+        const anchor = findClosestAnchor(target);
+        if (anchor) {
+          const currentUrl = window.location.href;
+          const newUrl = (anchor as HTMLAnchorElement).href;
+          const isExternalLink = (anchor as HTMLAnchorElement).target === "_blank";
+          const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
+          if (newUrl === currentUrl || isAnchor || isExternalLink) {
+            NProgress.start();
+            NProgress.done();
+            [].forEach.call(npgclass, function (el: Element) {
+              el.classList.remove("nprogress-busy");
+            });
+          } else {
+            NProgress.start();
+            (function (history) {
+              const pushState = history.pushState;
+              history.pushState = function () {
+                NProgress.done();
+                [].forEach.call(npgclass, function (el: Element) {
+                  el.classList.remove("nprogress-busy");
+                });
+                // eslint-disable-next-line prefer-rest-params, @typescript-eslint/no-explicit-any
+                return pushState.apply(history, arguments as any);
+              };
+            })(window.history);
+          }
         }
-      });
-    });
-  });
+      } catch (err) {
+        // Log the error in development only!
+        // console.log('NextTopLoader error: ', err);
+        NProgress.start();
+        NProgress.done();
+      }
+    }
+
+    // Add the global click event listener
+    document.addEventListener("click", handleClick);
+
+    // Clean up the global click event listener when the component is unmounted
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, []);
 
   return styles;
 };
