@@ -66,7 +66,7 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 
 ```jsx
 <NextTopLoader
-  color="#29D"
+  color="#2299DD"
   initialPosition={0.08}
   crawlSpeed={200}
   height={3}
@@ -74,17 +74,19 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
   showSpinner={true}
   easing="ease"
   speed={200}
+  shadow="0 0 10px #2299DD,0 0 5px #2299DD"
 />
 ```
 
 - `color`: to change the default color of TopLoader.
 - `initialPosition`: to change initial position for the TopLoader in percentage, : `0.08 = 8%`.
-- `crawlSpeed`: increament delay speed in `ms`.
+- `crawlSpeed`: increment delay speed in `ms`.
 - `speed`: animation speed for the TopLoader in `ms`
 - `easing`: animation settings using easing (a CSS easing string).
 - `height`: height of TopLoader in `px`.
-- `crawl`: auto increamenting behaviour for the TopLoader.
+- `crawl`: auto incrementing behavior for the TopLoader.
 - `showSpinner`: to show spinner or not.
+- `shadow`: a smooth shadow for the TopLoader. (set to `false` to disable it)
 
 [![Sponsor me on GitHub](https://img.shields.io/badge/Sponsor%20me%20on-GitHub-brightgreen)](https://github.com/sponsors/TheSGJ)
 
