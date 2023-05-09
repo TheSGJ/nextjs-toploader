@@ -53,35 +53,51 @@ export type NextTopLoaderProps = {
    * @default 200
    */
   speed?: number;
+  /**
+   * Defines a shadow for the TopLoader.
+   * @default "0 0 10px ${color},0 0 5px ${color}"
+   *
+   * @ you can disable it by setting it to `false`
+   */
+  shadow?: string | false;
 }
 
 const NextTopLoader = ({
-  color,
-  height,
+  color: propColor,
+  height: propHeight,
   showSpinner,
   crawl,
   crawlSpeed,
   initialPosition,
   easing,
   speed,
+  shadow,
 }: NextTopLoaderProps) => {
   const defaultColor = '#29d';
   const defaultHeight = 3;
 
+  const color = propColor ?? defaultColor;
+  const height = propHeight ?? defaultHeight;
+
+  // Any falsy (except undefined) will disable the shadow
+  const boxShadow = !shadow && shadow !== undefined
+    ? ''
+    : shadow
+      ? `box-shadow:${shadow}`
+      : `box-shadow:0 0 10px ${color},0 0 5px ${color}`;
+
   const styles = (
     <style>
       {`#nprogress{pointer-events:none}#nprogress .bar{background:${
-        color ?? defaultColor
+        color
       };position:fixed;z-index:1031;top:0;left:0;width:100%;height:${
-        height ?? defaultHeight
-      }px}#nprogress .peg{display:block;position:absolute;right:0;width:100px;height:100%;box-shadow:0 0 10px ${
-        color ?? defaultColor
-      },0 0 5px ${
-        color ?? defaultColor
+        height
+      }px}#nprogress .peg{display:block;position:absolute;right:0;width:100px;height:100%;${
+        boxShadow
       };opacity:1;-webkit-transform:rotate(3deg) translate(0px,-4px);-ms-transform:rotate(3deg) translate(0px,-4px);transform:rotate(3deg) translate(0px,-4px)}#nprogress .spinner{display:block;position:fixed;z-index:1031;top:15px;right:15px}#nprogress .spinner-icon{width:18px;height:18px;box-sizing:border-box;border:2px solid transparent;border-top-color:${
-        color ?? defaultColor
+        color
       };border-left-color:${
-        color ?? defaultColor
+        color
       };border-radius:50%;-webkit-animation:nprogress-spinner 400ms linear infinite;animation:nprogress-spinner 400ms linear infinite}.nprogress-custom-parent{overflow:hidden;position:relative}.nprogress-custom-parent #nprogress .bar,.nprogress-custom-parent #nprogress .spinner{position:absolute}@-webkit-keyframes nprogress-spinner{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}@keyframes nprogress-spinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}`}
     </style>
   );
@@ -183,4 +199,8 @@ NextTopLoader.propTypes = {
   initialPosition: PropTypes.number,
   easing: PropTypes.string,
   speed: PropTypes.number,
+  shadow: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
 };
