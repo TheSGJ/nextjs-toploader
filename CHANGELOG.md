@@ -52,3 +52,13 @@
 ### Added
 
 - Added support for client side navigations
+
+## v1.4.2
+
+### Added
+
+- Added shadow config prop
+
+### Fixed
+
+- Fixed spelling for increment. And updated the README.
