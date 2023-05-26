@@ -19,6 +19,10 @@ export type NextTopLoaderProps = {
    */
   color?: string;
   /**
+   * Color for the TopLoader in dark mode.
+   */
+  darkColor?: string;
+  /**
    * The initial position for the TopLoader in percentage, 0.08 is 8%.
    * @default 0.08
    */
@@ -60,10 +64,11 @@ export type NextTopLoaderProps = {
    * @ you can disable it by setting it to `false`
    */
   shadow?: string | false;
-}
+};
 
 const NextTopLoader = ({
   color: propColor,
+  darkColor: propDarkColor,
   height: propHeight,
   showSpinner,
   crawl,
@@ -73,31 +78,31 @@ const NextTopLoader = ({
   speed,
   shadow,
 }: NextTopLoaderProps) => {
+  const [isDarkMode, setIsDarkMode] = React.useState(false);
+
   const defaultColor = '#29d';
   const defaultHeight = 3;
 
   const color = propColor ?? defaultColor;
+  const darkColor = propDarkColor ?? color;
   const height = propHeight ?? defaultHeight;
 
   // Any falsy (except undefined) will disable the shadow
-  const boxShadow = !shadow && shadow !== undefined
-    ? ''
-    : shadow
+  const boxShadow =
+    !shadow && shadow !== undefined
+      ? ''
+      : shadow
       ? `box-shadow:${shadow}`
       : `box-shadow:0 0 10px ${color},0 0 5px ${color}`;
 
   const styles = (
     <style>
       {`#nprogress{pointer-events:none}#nprogress .bar{background:${
-        color
-      };position:fixed;z-index:1031;top:0;left:0;width:100%;height:${
-        height
-      }px}#nprogress .peg{display:block;position:absolute;right:0;width:100px;height:100%;${
-        boxShadow
-      };opacity:1;-webkit-transform:rotate(3deg) translate(0px,-4px);-ms-transform:rotate(3deg) translate(0px,-4px);transform:rotate(3deg) translate(0px,-4px)}#nprogress .spinner{display:block;position:fixed;z-index:1031;top:15px;right:15px}#nprogress .spinner-icon{width:18px;height:18px;box-sizing:border-box;border:2px solid transparent;border-top-color:${
-        color
+        isDarkMode ? darkColor : color
+      };position:fixed;z-index:1031;top:0;left:0;width:100%;height:${height}px}#nprogress .peg{display:block;position:absolute;right:0;width:100px;height:100%;${boxShadow};opacity:1;-webkit-transform:rotate(3deg) translate(0px,-4px);-ms-transform:rotate(3deg) translate(0px,-4px);transform:rotate(3deg) translate(0px,-4px)}#nprogress .spinner{display:block;position:fixed;z-index:1031;top:15px;right:15px}#nprogress .spinner-icon{width:18px;height:18px;box-sizing:border-box;border:2px solid transparent;border-top-color:${
+        isDarkMode ? darkColor : color
       };border-left-color:${
-        color
+        isDarkMode ? darkColor : color
       };border-radius:50%;-webkit-animation:nprogress-spinner 400ms linear infinite;animation:nprogress-spinner 400ms linear infinite}.nprogress-custom-parent{overflow:hidden;position:relative}.nprogress-custom-parent #nprogress .bar,.nprogress-custom-parent #nprogress .spinner{position:absolute}@-webkit-keyframes nprogress-spinner{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}@keyframes nprogress-spinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}`}
     </style>
   );
@@ -111,6 +116,15 @@ const NextTopLoader = ({
       easing: easing ?? 'ease',
       speed: speed ?? 200,
     });
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function handleChange(event: MediaQueryListEvent) {
+      setIsDarkMode(event.matches);
+    }
+
+    mediaQuery.addEventListener('change', handleChange);
+    setIsDarkMode(mediaQuery.matches);
 
     function isAnchorOfCurrentUrl(currentUrl: string, newUrl: string) {
       const currentUrlObj = new URL(currentUrl);
@@ -146,13 +160,13 @@ const NextTopLoader = ({
         if (anchor) {
           const currentUrl = window.location.href;
           const newUrl = (anchor as HTMLAnchorElement).href;
-          const isExternalLink = (anchor as HTMLAnchorElement).target === "_blank";
+          const isExternalLink = (anchor as HTMLAnchorElement).target === '_blank';
           const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
           if (newUrl === currentUrl || isAnchor || isExternalLink) {
             NProgress.start();
             NProgress.done();
             [].forEach.call(npgclass, function (el: Element) {
-              el.classList.remove("nprogress-busy");
+              el.classList.remove('nprogress-busy');
             });
           } else {
             NProgress.start();
@@ -161,7 +175,7 @@ const NextTopLoader = ({
               history.pushState = function () {
                 NProgress.done();
                 [].forEach.call(npgclass, function (el: Element) {
-                  el.classList.remove("nprogress-busy");
+                  el.classList.remove('nprogress-busy');
                 });
                 // eslint-disable-next-line prefer-rest-params, @typescript-eslint/no-explicit-any
                 return pushState.apply(history, arguments as any);
@@ -178,11 +192,11 @@ const NextTopLoader = ({
     }
 
     // Add the global click event listener
-    document.addEventListener("click", handleClick);
+    document.addEventListener('click', handleClick);
 
     // Clean up the global click event listener when the component is unmounted
     return () => {
-      document.removeEventListener("click", handleClick);
+      document.removeEventListener('click', handleClick);
     };
   }, []);
 
@@ -192,6 +206,7 @@ export default NextTopLoader;
 
 NextTopLoader.propTypes = {
   color: PropTypes.string,
+  drakColor: PropTypes.string,
   height: PropTypes.number,
   showSpinner: PropTypes.bool,
   crawl: PropTypes.bool,
@@ -199,8 +214,5 @@ NextTopLoader.propTypes = {
   initialPosition: PropTypes.number,
   easing: PropTypes.string,
   speed: PropTypes.number,
-  shadow: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool,
-  ]),
+  shadow: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
