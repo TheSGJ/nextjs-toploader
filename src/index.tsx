@@ -206,7 +206,7 @@ export default NextTopLoader;
 
 NextTopLoader.propTypes = {
   color: PropTypes.string,
-  drakColor: PropTypes.string,
+  darkColor: PropTypes.string,
   height: PropTypes.number,
   showSpinner: PropTypes.bool,
   crawl: PropTypes.bool,
