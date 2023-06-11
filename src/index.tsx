@@ -60,6 +60,11 @@ export type NextTopLoaderProps = {
    * @ you can disable it by setting it to `false`
    */
   shadow?: string | false;
+  /**
+   * Minimum duration in ms until the TopLoader starts showing.
+   * @default 200
+   */
+  delay?: number;
 }
 
 const NextTopLoader = ({
@@ -72,6 +77,7 @@ const NextTopLoader = ({
   easing,
   speed,
   shadow,
+  delay,
 }: NextTopLoaderProps) => {
   const defaultColor = '#29d';
   const defaultHeight = 3;
@@ -103,6 +109,8 @@ const NextTopLoader = ({
   );
 
   React.useEffect(() => {
+    let progressBarTimeout: NodeJS.Timeout | undefined = undefined;
+
     NProgress.configure({
       showSpinner: showSpinner ?? true,
       trickle: crawl ?? true,
@@ -111,6 +119,16 @@ const NextTopLoader = ({
       easing: easing ?? 'ease',
       speed: speed ?? 200,
     });
+
+    function startProgressBar() {
+      clearTimeout(progressBarTimeout);
+      progressBarTimeout = setTimeout(NProgress.start, delay ?? 200);
+    }
+
+    function stopProgressBar() {
+      clearTimeout(progressBarTimeout);
+      NProgress.done();
+    }
 
     function isAnchorOfCurrentUrl(currentUrl: string, newUrl: string) {
       const currentUrlObj = new URL(currentUrl);
@@ -149,17 +167,17 @@ const NextTopLoader = ({
           const isExternalLink = (anchor as HTMLAnchorElement).target === "_blank";
           const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
           if (newUrl === currentUrl || isAnchor || isExternalLink) {
-            NProgress.start();
-            NProgress.done();
+            startProgressBar();
+            stopProgressBar();
             [].forEach.call(npgclass, function (el: Element) {
               el.classList.remove("nprogress-busy");
             });
           } else {
-            NProgress.start();
+            startProgressBar();
             (function (history) {
               const pushState = history.pushState;
               history.pushState = function () {
-                NProgress.done();
+                stopProgressBar();
                 [].forEach.call(npgclass, function (el: Element) {
                   el.classList.remove("nprogress-busy");
                 });
@@ -172,8 +190,8 @@ const NextTopLoader = ({
       } catch (err) {
         // Log the error in development only!
         // console.log('NextTopLoader error: ', err);
-        NProgress.start();
-        NProgress.done();
+        startProgressBar();
+        stopProgressBar();
       }
     }
 
@@ -199,6 +217,7 @@ NextTopLoader.propTypes = {
   initialPosition: PropTypes.number,
   easing: PropTypes.string,
   speed: PropTypes.number,
+  delay: PropTypes.number,
   shadow: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,
