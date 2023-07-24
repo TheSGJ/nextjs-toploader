@@ -94,7 +94,7 @@ const NextTopLoader = ({
         height
       }px}#nprogress .peg{display:block;position:absolute;right:0;width:100px;height:100%;${
         boxShadow
-      };opacity:1;-webkit-transform:rotate(3deg) translate(0px,-4px);-ms-transform:rotate(3deg) translate(0px,-4px);transform:rotate(3deg) translate(0px,-4px)}#nprogress .spinner{display:block;position:fixed;z-index:1031;top:15px;right:15px}#nprogress .spinner-icon{width:18px;height:18px;box-sizing:border-box;border:2px solid transparent;border-top-color:${
+      };opacity:1;-webkit-transform:rotate(3deg) translate(0px,-4px);-ms-transform:rotate(3deg) translate(0px,-4px);transform:rotate(3deg) translate(0px,-4px)}#nprogress .spinner{display:block;position:fixed;z-index:1031;bottom:15px;right:15px}#nprogress .spinner-icon{width:18px;height:18px;box-sizing:border-box;border:4px solid transparent;border-top-color:${
         color
       };border-left-color:${
         color
