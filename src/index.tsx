@@ -143,9 +143,9 @@ const NextTopLoader = ({
       try {
         const target = event.target as HTMLElement;
         const anchor = findClosestAnchor(target);
-        if (anchor) {
+        const newUrl = anchor?.href;
+        if (newUrl) {
           const currentUrl = window.location.href;
-          const newUrl = (anchor as HTMLAnchorElement).href;
           const isExternalLink = (anchor as HTMLAnchorElement).target === "_blank";
           const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
           if (newUrl === currentUrl || isAnchor || isExternalLink) {
