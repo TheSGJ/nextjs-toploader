@@ -390,10 +390,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/nprogress@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "@types/nprogress@npm:0.2.0"
-  checksum: 561384775008ae58111f038f8f9468b3de8987cd753feef9bf6d07af0e1343390d492a078bb08a7b53ac7370208e31e06ac069cb852c435d49f5fe218e9769c4
+"@types/nprogress@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "@types/nprogress@npm:0.2.1"
+  checksum: fe9db499f3d9cff90bad9f49336ff82ea444a51ca336a25ec401d18cc8fb12e546b622bdc11379491475c22cd4d9fb1195c805055cacb365627c667e52d618b1
   languageName: node
   linkType: hard
 
@@ -2086,7 +2086,7 @@ __metadata:
   resolution: "nextjs-toploader@workspace:."
   dependencies:
     "@types/node": ^18.14.6
-    "@types/nprogress": ^0.2.0
+    "@types/nprogress": ^0.2.1
     "@types/react": ^18
     "@types/react-dom": ^18
     "@typescript-eslint/eslint-plugin": ^5.54.0
