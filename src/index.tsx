@@ -62,7 +62,7 @@ export type NextTopLoaderProps = {
   shadow?: string | false;
   /**
    * Defines zIndex for the TopLoader.
-   * @default 1031
+   * @default 1600
    *
    */
   zIndex?: number;
@@ -78,7 +78,7 @@ const NextTopLoader = ({
   easing,
   speed,
   shadow,
-  zIndex = 1031,
+  zIndex = 1600,
 }: NextTopLoaderProps) => {
   const defaultColor = '#29d';
   const defaultHeight = 3;
@@ -145,8 +145,10 @@ const NextTopLoader = ({
           const currentUrl = window.location.href;
           const newUrl = (anchor as HTMLAnchorElement).href;
           const isExternalLink = (anchor as HTMLAnchorElement).target === '_blank';
+          const isBlob = newUrl.startsWith('blob:');
           const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
-          if (newUrl === currentUrl || isAnchor || isExternalLink) {
+
+          if (newUrl === currentUrl || isAnchor || isExternalLink || isBlob) {
             NProgress.start();
             NProgress.done();
             [].forEach.call(npgclass, function (el: Element) {
