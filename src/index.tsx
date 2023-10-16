@@ -61,6 +61,12 @@ export type NextTopLoaderProps = {
    */
   shadow?: string | false;
   /**
+   * Defines a template for the TopLoader.
+   * @default "<div class="bar" role="bar"><div class="peg"></div></div>
+   * <div class="spinner" role="spinner"><div class="spinner-icon"></div></div>"
+   */
+  template?: string;
+   /**
    * Defines zIndex for the TopLoader.
    * @default 1600
    *
@@ -78,6 +84,7 @@ const NextTopLoader = ({
   easing,
   speed,
   shadow,
+  template,
   zIndex = 1600,
 }: NextTopLoaderProps) => {
   const defaultColor = '#29d';
@@ -108,6 +115,9 @@ const NextTopLoader = ({
       minimum: initialPosition ?? 0.08,
       easing: easing ?? 'ease',
       speed: speed ?? 200,
+      template:
+        template ??
+        '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>',
     });
 
     function isAnchorOfCurrentUrl(currentUrl: string, newUrl: string) {
@@ -199,6 +209,7 @@ NextTopLoader.propTypes = {
   initialPosition: PropTypes.number,
   easing: PropTypes.string,
   speed: PropTypes.number,
+  template: PropTypes.string,
   shadow: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   zIndex: PropTypes.number,
 };
