@@ -62,3 +62,17 @@
 ### Fixed
 
 - Fixed spelling for increment. And updated the README.
+
+## v1.5.3
+
+### Added
+
+- Added template option (#30)
+- Added the provision to configure z index via props (#26)
+
+## Fixed
+
+- Fixed loader infinity when press control click - issue (#36) fixed by pr (#40)
+- Fixed Unexpected symbol "?" on Safari 12.1 by adding es6 as target (#23)
+- Fixed the loader when href is empty
+- Fixed the loader for new URL starts with "blob:"
