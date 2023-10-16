@@ -75,6 +75,8 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
   easing="ease"
   speed={200}
   shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+  template='<div class="bar" role="bar"><div class="peg"></div></div> 
+  <div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
 />
 ```
 
@@ -87,6 +89,7 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 - `crawl`: auto incrementing behavior for the TopLoader.
 - `showSpinner`: to show spinner or not.
 - `shadow`: a smooth shadow for the TopLoader. (set to `false` to disable it)
+- `template`: to include custom HTML attributes for the TopLoader. 
 
 [![Sponsor me on GitHub](https://img.shields.io/badge/Sponsor%20me%20on-GitHub-brightgreen)](https://github.com/sponsors/TheSGJ)
 
