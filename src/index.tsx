@@ -60,7 +60,19 @@ export type NextTopLoaderProps = {
    * @ you can disable it by setting it to `false`
    */
   shadow?: string | false;
-}
+  /**
+   * Defines a template for the TopLoader.
+   * @default "<div class="bar" role="bar"><div class="peg"></div></div>
+   * <div class="spinner" role="spinner"><div class="spinner-icon"></div></div>"
+   */
+  template?: string;
+   /**
+   * Defines zIndex for the TopLoader.
+   * @default 1600
+   *
+   */
+  zIndex?: number;
+};
 
 const NextTopLoader = ({
   color: propColor,
@@ -72,6 +84,8 @@ const NextTopLoader = ({
   easing,
   speed,
   shadow,
+  template,
+  zIndex = 1600,
 }: NextTopLoaderProps) => {
   const defaultColor = '#29d';
   const defaultHeight = 3;
@@ -80,25 +94,16 @@ const NextTopLoader = ({
   const height = propHeight ?? defaultHeight;
 
   // Any falsy (except undefined) will disable the shadow
-  const boxShadow = !shadow && shadow !== undefined
-    ? ''
-    : shadow
+  const boxShadow =
+    !shadow && shadow !== undefined
+      ? ''
+      : shadow
       ? `box-shadow:${shadow}`
       : `box-shadow:0 0 10px ${color},0 0 5px ${color}`;
 
   const styles = (
     <style>
-      {`#nprogress{pointer-events:none}#nprogress .bar{background:${
-        color
-      };position:fixed;z-index:1031;top:0;left:0;width:100%;height:${
-        height
-      }px}#nprogress .peg{display:block;position:absolute;right:0;width:100px;height:100%;${
-        boxShadow
-      };opacity:1;-webkit-transform:rotate(3deg) translate(0px,-4px);-ms-transform:rotate(3deg) translate(0px,-4px);transform:rotate(3deg) translate(0px,-4px)}#nprogress .spinner{display:block;position:fixed;z-index:1031;top:15px;right:15px}#nprogress .spinner-icon{width:18px;height:18px;box-sizing:border-box;border:2px solid transparent;border-top-color:${
-        color
-      };border-left-color:${
-        color
-      };border-radius:50%;-webkit-animation:nprogress-spinner 400ms linear infinite;animation:nprogress-spinner 400ms linear infinite}.nprogress-custom-parent{overflow:hidden;position:relative}.nprogress-custom-parent #nprogress .bar,.nprogress-custom-parent #nprogress .spinner{position:absolute}@-webkit-keyframes nprogress-spinner{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}@keyframes nprogress-spinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}`}
+      {`#nprogress{pointer-events:none}#nprogress .bar{background:${color};position:fixed;z-index:${zIndex};top:0;left:0;width:100%;height:${height}px}#nprogress .peg{display:block;position:absolute;right:0;width:100px;height:100%;${boxShadow};opacity:1;-webkit-transform:rotate(3deg) translate(0px,-4px);-ms-transform:rotate(3deg) translate(0px,-4px);transform:rotate(3deg) translate(0px,-4px)}#nprogress .spinner{display:block;position:fixed;z-index:${zIndex};top:15px;right:15px}#nprogress .spinner-icon{width:18px;height:18px;box-sizing:border-box;border:2px solid transparent;border-top-color:${color};border-left-color:${color};border-radius:50%;-webkit-animation:nprogress-spinner 400ms linear infinite;animation:nprogress-spinner 400ms linear infinite}.nprogress-custom-parent{overflow:hidden;position:relative}.nprogress-custom-parent #nprogress .bar,.nprogress-custom-parent #nprogress .spinner{position:absolute}@-webkit-keyframes nprogress-spinner{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}@keyframes nprogress-spinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}`}
     </style>
   );
 
@@ -110,6 +115,9 @@ const NextTopLoader = ({
       minimum: initialPosition ?? 0.08,
       easing: easing ?? 'ease',
       speed: speed ?? 200,
+      template:
+        template ??
+        '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>',
     });
 
     function isAnchorOfCurrentUrl(currentUrl: string, newUrl: string) {
@@ -146,13 +154,15 @@ const NextTopLoader = ({
         const newUrl = anchor?.href;
         if (newUrl) {
           const currentUrl = window.location.href;
-          const isExternalLink = (anchor as HTMLAnchorElement).target === "_blank";
+          // const newUrl = (anchor as HTMLAnchorElement).href;
+          const isExternalLink = (anchor as HTMLAnchorElement).target === '_blank';
+          const isBlob = newUrl.startsWith('blob:');
           const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
-          if (newUrl === currentUrl || isAnchor || isExternalLink) {
+          if (newUrl === currentUrl || isAnchor || isExternalLink || isBlob || event.ctrlKey) {
             NProgress.start();
             NProgress.done();
             [].forEach.call(npgclass, function (el: Element) {
-              el.classList.remove("nprogress-busy");
+              el.classList.remove('nprogress-busy');
             });
           } else {
             NProgress.start();
@@ -161,7 +171,7 @@ const NextTopLoader = ({
               history.pushState = function () {
                 NProgress.done();
                 [].forEach.call(npgclass, function (el: Element) {
-                  el.classList.remove("nprogress-busy");
+                  el.classList.remove('nprogress-busy');
                 });
                 // eslint-disable-next-line prefer-rest-params, @typescript-eslint/no-explicit-any
                 return pushState.apply(history, arguments as any);
@@ -178,11 +188,11 @@ const NextTopLoader = ({
     }
 
     // Add the global click event listener
-    document.addEventListener("click", handleClick);
+    document.addEventListener('click', handleClick);
 
     // Clean up the global click event listener when the component is unmounted
     return () => {
-      document.removeEventListener("click", handleClick);
+      document.removeEventListener('click', handleClick);
     };
   }, []);
 
@@ -199,8 +209,7 @@ NextTopLoader.propTypes = {
   initialPosition: PropTypes.number,
   easing: PropTypes.string,
   speed: PropTypes.number,
-  shadow: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool,
-  ]),
+  template: PropTypes.string,
+  shadow: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  zIndex: PropTypes.number,
 };

@@ -1,6 +1,6 @@
 import { Options } from 'tsup';
 export const tsup: Options = {
-  target: 'esnext',
+  target: 'es6',
   clean: true,
   dts: true,
   entry: ['src/index.tsx'],
