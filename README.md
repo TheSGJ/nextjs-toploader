@@ -78,6 +78,7 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
   template='<div class="bar" role="bar"><div class="peg"></div></div> 
   <div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
   zIndex={1600}
+  showAtBottom={false}
 />
 ```
 
@@ -96,7 +97,7 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 
 ---
 
-UPI ID: sgj@apl
+UPI ID: thesgj@sbi
 
 [![Sponsor me on GitHub](https://img.shields.io/badge/Sponsor%20me%20on-GitHub-brightgreen)](https://github.com/sponsors/TheSGJ)
 
