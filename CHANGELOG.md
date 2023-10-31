@@ -68,12 +68,12 @@
 ### Added
 
 - Added template option
-- Added the provision to configure z index via props (#26)
+- Added the provision to configure z index via props
 
 ## Fixed
 
-- Fixed loader infinity when press control click - issue (#36) fixed by pr (#40)
-- Fixed Unexpected symbol "?" on Safari 12.1 by adding es6 as target (#23)
+- Fixed loader infinity when press control click
+- Fixed Unexpected symbol "?" on Safari 12.1 by adding es6 as target
 - Fixed the loader when href is empty
 - Fixed the loader for new URL starts with "blob:"
 
