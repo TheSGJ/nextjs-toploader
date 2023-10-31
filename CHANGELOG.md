@@ -67,7 +67,7 @@
 
 ### Added
 
-- Added template option (#30)
+- Added template option
 - Added the provision to configure z index via props (#26)
 
 ## Fixed
@@ -76,3 +76,9 @@
 - Fixed Unexpected symbol "?" on Safari 12.1 by adding es6 as target (#23)
 - Fixed the loader when href is empty
 - Fixed the loader for new URL starts with "blob:"
+
+## v1.6.3
+
+### Added
+
+- Added a feature to show the TopLoader at bottom.
