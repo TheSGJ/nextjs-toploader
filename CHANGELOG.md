@@ -70,7 +70,7 @@
 - Added template option
 - Added the provision to configure z index via props
 
-## Fixed
+### Fixed
 
 - Fixed loader infinity when press control click
 - Fixed Unexpected symbol "?" on Safari 12.1 by adding es6 as target
