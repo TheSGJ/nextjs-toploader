@@ -1,6 +1,6 @@
 # Next Js TopLoader
 
-- A Next.js Top Loading Bar component made using nprogress, works with Next.js 13.
+- A Next.js Top Loading Bar component made using nprogress, works with Next.js 14.
 
 ## Install
 
@@ -90,8 +90,9 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 - `crawl`: auto incrementing behavior for the TopLoader.
 - `showSpinner`: to show spinner or not.
 - `shadow`: a smooth shadow for the TopLoader. (set to `false` to disable it)
-- `template`: to include custom HTML attributes for the TopLoader. 
+- `template`: to include custom HTML attributes for the TopLoader.
 - `zIndex`: defines zIndex for the TopLoader.
+- `showAtBottom`: To show the TopLoader at bottom. (increase height for the TopLoader to ensure it's visibility at the mobile devices)
 
 ---
 
