@@ -82,3 +82,9 @@
 ### Added
 
 - Added a feature to show the TopLoader at bottom.
+
+## v1.6.4
+
+### Fixed
+
+- Fixed the spinner top and bottom margin
