@@ -169,7 +169,12 @@ const NextTopLoader = ({
           const isExternalLink = (anchor as HTMLAnchorElement).target === '_blank';
           const isBlob = newUrl.startsWith('blob:');
           const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
-          if (newUrl === currentUrl || isAnchor || isExternalLink || isBlob || event.ctrlKey) {
+          // Check for Ctrl key (Windows/Linux) or Cmd key (Mac)
+          const isModifierKeyPressed = event.ctrlKey || event.metaKey;
+          if (isModifierKeyPressed) {
+            return;
+          }
+          if (newUrl === currentUrl || isAnchor || isExternalLink || isBlob) {
             NProgress.start();
             NProgress.done();
             [].forEach.call(npgclass, function (el: Element) {
