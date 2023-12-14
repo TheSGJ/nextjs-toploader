@@ -205,7 +205,7 @@ const NextTopLoader = ({
     return () => {
       document.removeEventListener('click', handleClick);
     };
-  }, []);
+  }, [crawl, crawlSpeed, easing, initialPosition, showSpinner, speed, template]);
 
   return styles;
 };
