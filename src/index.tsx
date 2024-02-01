@@ -169,7 +169,7 @@ const NextTopLoader = ({
           const isExternalLink = (anchor as HTMLAnchorElement).target === '_blank';
           const isBlob = newUrl.startsWith('blob:');
           const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
-          if (newUrl === currentUrl || isAnchor || isExternalLink || isBlob || event.ctrlKey) {
+          if (newUrl === currentUrl || isAnchor || isExternalLink || isBlob || event.ctrlKey|| event.metaKey) {
             NProgress.start();
             NProgress.done();
             [].forEach.call(npgclass, function (el: Element) {
