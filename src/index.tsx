@@ -111,13 +111,24 @@ const NextTopLoader = ({
   // Check if to show at bottom
   const positionStyle = showAtBottom ? 'bottom: 0;' : 'top: 0;';
   const spinnerPositionStyle = showAtBottom ? 'bottom: 15px;' : 'top: 15px;';
-  
+
   const styles = (
     <style>
       {`#nprogress{pointer-events:none}#nprogress .bar{background:${color};position:fixed;z-index:${zIndex};${positionStyle}left:0;width:100%;height:${height}px}#nprogress .peg{display:block;position:absolute;right:0;width:100px;height:100%;${boxShadow};opacity:1;-webkit-transform:rotate(3deg) translate(0px,-4px);-ms-transform:rotate(3deg) translate(0px,-4px);transform:rotate(3deg) translate(0px,-4px)}#nprogress .spinner{display:block;position:fixed;z-index:${zIndex};${spinnerPositionStyle}right:15px}#nprogress .spinner-icon{width:18px;height:18px;box-sizing:border-box;border:2px solid transparent;border-top-color:${color};border-left-color:${color};border-radius:50%;-webkit-animation:nprogress-spinner 400ms linear infinite;animation:nprogress-spinner 400ms linear infinite}.nprogress-custom-parent{overflow:hidden;position:relative}.nprogress-custom-parent #nprogress .bar,.nprogress-custom-parent #nprogress .spinner{position:absolute}@-webkit-keyframes nprogress-spinner{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}@keyframes nprogress-spinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}`}
     </style>
   );
 
+  // Convert the url to Absolute URL based on the current window location.
+  const toAbsoluteURL = (url: string): string => {
+    return new URL(url, window.location.href).href;
+  };
+
+  // Check if it is hash anchor or same page anchor
+  const isHashAnchor = (currentUrl: string, newUrl: string): boolean => {
+    const current = new URL(toAbsoluteURL(currentUrl));
+    const next = new URL(toAbsoluteURL(newUrl));
+    return current.href.split('#')[0] === next.href.split('#')[0];
+  };
   React.useEffect(() => {
     NProgress.configure({
       showSpinner: showSpinner ?? true,
@@ -167,9 +178,21 @@ const NextTopLoader = ({
           const currentUrl = window.location.href;
           // const newUrl = (anchor as HTMLAnchorElement).href;
           const isExternalLink = (anchor as HTMLAnchorElement).target === '_blank';
-          const isSpecialScheme = ['tel:', 'mailto:', 'sms:', 'blob:', 'download:'].some((scheme) => newUrl.startsWith(scheme));
+
+          // Check for Special Schemes
+          const isSpecialScheme = ['tel:', 'mailto:', 'sms:', 'blob:', 'download:'].some((scheme) =>
+            newUrl.startsWith(scheme)
+          );
           const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
-          if (newUrl === currentUrl || isAnchor || isExternalLink || isSpecialScheme || event.ctrlKey|| event.metaKey) {
+          if (
+            newUrl === currentUrl ||
+            isAnchor ||
+            isExternalLink ||
+            isSpecialScheme ||
+            event.ctrlKey ||
+            event.metaKey ||
+            isHashAnchor(window.location.href, anchor.href)
+          ) {
             NProgress.start();
             NProgress.done();
             [].forEach.call(npgclass, function (el: Element) {
