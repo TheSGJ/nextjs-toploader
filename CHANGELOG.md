@@ -88,3 +88,9 @@
 ### Fixed
 
 - Fixed the spinner top and bottom margin
+
+## v1.6.5
+
+### Fixed
+
+- Fixed the loader when using CMD + Click in macOS
