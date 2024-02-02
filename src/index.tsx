@@ -167,9 +167,9 @@ const NextTopLoader = ({
           const currentUrl = window.location.href;
           // const newUrl = (anchor as HTMLAnchorElement).href;
           const isExternalLink = (anchor as HTMLAnchorElement).target === '_blank';
-          const isBlob = newUrl.startsWith('blob:');
+          const isSpecialScheme = ['tel:', 'mailto:', 'sms:', 'blob:', 'download:'].some((scheme) => newUrl.startsWith(scheme));
           const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
-          if (newUrl === currentUrl || isAnchor || isExternalLink || isBlob || event.ctrlKey|| event.metaKey) {
+          if (newUrl === currentUrl || isAnchor || isExternalLink || isSpecialScheme || event.ctrlKey|| event.metaKey) {
             NProgress.start();
             NProgress.done();
             [].forEach.call(npgclass, function (el: Element) {
