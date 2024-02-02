@@ -94,3 +94,10 @@
 ### Fixed
 
 - Fixed the loader when using CMD + Click in macOS
+
+## v1.6.6
+
+### Fixed
+
+- Fixed the TopLoader to work with special schemes such as mailto, sms, tel, etc
+- Fixed the TopLoader for "#" hash anchor
