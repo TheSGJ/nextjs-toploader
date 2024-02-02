@@ -9,6 +9,8 @@
 /* eslint-disable prefer-const */
 /* eslint-disable quotes */
 
+"use client"
+
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import * as NProgress from 'nprogress';
@@ -163,13 +165,14 @@ const NextTopLoader = ({
         const target = event.target as HTMLElement;
         const anchor = findClosestAnchor(target);
         const newUrl = anchor?.href;
+        const isNewTab = event.ctrlKey || event.metaKey;
         if (newUrl) {
           const currentUrl = window.location.href;
           // const newUrl = (anchor as HTMLAnchorElement).href;
           const isExternalLink = (anchor as HTMLAnchorElement).target === '_blank';
           const isBlob = newUrl.startsWith('blob:');
           const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
-          if (newUrl === currentUrl || isAnchor || isExternalLink || isBlob || event.ctrlKey|| event.metaKey) {
+          if (newUrl === currentUrl || isAnchor || isExternalLink || isBlob || event.ctrlKey|| event.metaKey || isNewTab) {
             NProgress.start();
             NProgress.done();
             [].forEach.call(npgclass, function (el: Element) {
