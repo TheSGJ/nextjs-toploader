@@ -169,7 +169,7 @@ const NextTopLoader = ({
           const isExternalLink = (anchor as HTMLAnchorElement).target === '_blank';
           const isSpecialScheme = ['tel:', 'mailto:', 'sms:', 'blob:', 'download:'].some((scheme) => newUrl.startsWith(scheme));
           const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
-          if (newUrl === currentUrl || isAnchor || isExternalLink || isSpecialScheme || event.ctrlKey) {
+          if (newUrl === currentUrl || isAnchor || isExternalLink || isSpecialScheme || event.ctrlKey|| event.metaKey) {
             NProgress.start();
             NProgress.done();
             [].forEach.call(npgclass, function (el: Element) {
