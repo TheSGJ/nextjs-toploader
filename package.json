@@ -57,7 +57,7 @@
   },
   "packageManager": "yarn@3.2.4",
   "dependencies": {
-    "@types/nprogress": "^0.2.1",
+    "@types/nprogress": "^0.2.2",
     "nprogress": "^0.2.0",
     "prop-types": "^15.8.1"
   }
