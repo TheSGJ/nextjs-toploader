@@ -220,13 +220,21 @@ const NextTopLoader = ({
         NProgress.done();
       }
     }
+    function handlePageHide() {
+      NProgress.done();
+      [].forEach.call(npgclass, function (el: Element) {
+        el.classList.remove('nprogress-busy');
+      });
+    }
 
     // Add the global click event listener
     document.addEventListener('click', handleClick);
+    window.addEventListener('pagehide', handlePageHide);
 
     // Clean up the global click event listener when the component is unmounted
     return () => {
       document.removeEventListener('click', handleClick);
+      window.removeEventListener('pagehide', handlePageHide);
     };
   }, []);
 
