@@ -207,8 +207,9 @@ const NextTopLoader = ({
                 [].forEach.call(npgclass, function (el: Element) {
                   el.classList.remove('nprogress-busy');
                 });
-                // eslint-disable-next-line prefer-rest-params, @typescript-eslint/no-explicit-any
-                return pushState.apply(history, arguments as any);
+                // eslint-disable-next-line prefer-rest-params
+                pushState.apply(history, arguments);
+                history.pushState = pushState;
               };
             })(window.history);
           }
