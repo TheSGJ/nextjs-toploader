@@ -100,5 +100,10 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 UPI ID: thesgj@sbi
 
 [![Sponsor me on GitHub](https://img.shields.io/badge/Sponsor%20me%20on-GitHub-brightgreen)](https://github.com/sponsors/TheSGJ)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FTheSGJ%2Fnextjs-toploader.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FTheSGJ%2Fnextjs-toploader?ref=badge_shield)
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/thesgj)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FTheSGJ%2Fnextjs-toploader.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FTheSGJ%2Fnextjs-toploader?ref=badge_large)
