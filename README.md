@@ -1,6 +1,6 @@
 # Next Js TopLoader
 
-- A Next.js Top Loading Bar component made using nprogress, works with Next.js 14.
+- A Next.js Top Loading Bar component made using nprogress, works with Next.js 14 and React.
 
 [![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/nextjs-toploader)
 [![NPM Downloads](https://img.shields.io/npm/dm/nextjs-toploader?&style=flat-square)](https://www.npmjs.com/package/nextjs-toploader)
@@ -61,6 +61,28 @@ export default function MyApp({ Component, pageProps }) {
     </>
   );
 }
+```
+
+### Usage with React, Vite React or any other React based component
+
+For rendering add `<NextTopLoader />` to your `return()` inside the <Router><Router/> component in `App()` in your App.js:
+
+```js
+import NextTopLoader from 'nextjs-toploader';
+const App = () => {
+  return (
+    <div>
+    <Router>
+      <NextTopLoader />
+    <Routes>
+    {/* Your Routes Here */}
+    </Routes>
+    </Router>
+    </div>
+  )
+}
+
+export default App;
 ```
 
 ### Default Configuration

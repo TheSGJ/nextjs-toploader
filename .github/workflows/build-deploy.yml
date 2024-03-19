@@ -1,4 +1,4 @@
-name: Publish nextjs-toploader to npmjs
+name: Publish nextjs-toploader to npmjs & jsr.io
 on:
   release:
     types: [published]
@@ -11,7 +11,8 @@ jobs:
       id-token: write
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
       - name: Find yarn cache location
         id: yarn-cache
@@ -40,3 +41,24 @@ jobs:
         run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Delete Current README.md
+        run: rm README.md
+
+      - name: Modify README for JSR.io
+        run: mv JSR.md README.md
+
+      - name: Move index.d.ts in src directory for JSR
+        run: cp dist/index.d.ts src/
+
+      - name: Add Use Client line
+        run: sed -i '1s/^/\"use client\";/' src/index.tsx
+
+      - name: Install Deno
+        run: curl -fsSL https://deno.land/install.sh | sh
+
+      - name: Publish JSR package using Deno
+        run: /home/runner/.deno/bin/deno publish --allow-slow-types --allow-dirty

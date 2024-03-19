@@ -126,3 +126,10 @@
 ### Fixed
 
 - Fix npm-publish.yml for gh actions to publish with provenance
+
+## v1.6.11
+
+### Fixed
+
+- Fix to add use client in jsr usage with nextjs
+- Update README about support for React
