@@ -119,3 +119,4 @@
 - Added Type declarations for few functions
 - Refactor the whole code to make it more readable
 - Updated to add support for the JSR Package Manager
+- Updated to version 1.6.9 to avoid version gap for JSR
