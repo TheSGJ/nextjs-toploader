@@ -120,3 +120,9 @@
 - Refactor the whole code to make it more readable
 - Updated to add support for the JSR Package Manager
 - Updated to version 1.6.9 to avoid version gap for JSR
+
+## v1.6.9
+
+### Fixed
+
+- Fix npm-publish.yml for gh actions to publish with provenance
