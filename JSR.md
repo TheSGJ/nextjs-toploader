@@ -1,22 +1,30 @@
 # Next Js TopLoader
 
-- A Next.js Top Loading Bar component made using nprogress, works with Next.js 14.
+- A Next.js Top Loading Bar component made using nprogress, works with Next.js 14 and React.
 
 [![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/nextjs-toploader)
 [![NPM Downloads](https://img.shields.io/npm/dm/nextjs-toploader?&style=flat-square)](https://www.npmjs.com/package/nextjs-toploader)
 
+For using npm package manager instead see: (https://www.npmjs.com/package/nextjs-toploader)
+
 ## Install
 
-using npm:
+using jsr with npm:
 
 ```bash
-npm install nextjs-toploader
+npx jsr add @thesgj/nextjs-toploader
 ```
 
-using yarn:
+using jsr with yarn:
 
 ```bash
-yarn add nextjs-toploader
+yarn dlx jsr add @thesgj/nextjs-toploader
+```
+
+using deno:
+
+```bash
+deno add @thesgj/nextjs-toploader
 ```
 
 ## Usage
@@ -24,7 +32,7 @@ yarn add nextjs-toploader
 import using:
 
 ```js
-import NextTopLoader from 'nextjs-toploader';
+import NextTopLoader from '@thesgj/nextjs-toploader';
 ```
 
 ### Usage with `app/layout.js` for `app` folder structure
@@ -32,7 +40,7 @@ import NextTopLoader from 'nextjs-toploader';
 For rendering add `<NextTopLoader />` to your `return()` inside the `<body></body>` of `RootLayout()`:
 
 ```js
-import NextTopLoader from 'nextjs-toploader';
+import NextTopLoader from '@thesgj/nextjs-toploader';
 
 export default function RootLayout({ children }) {
   return (
@@ -51,7 +59,7 @@ export default function RootLayout({ children }) {
 For rendering add `<NextTopLoader />` to your `return()` in `MyApp()`:
 
 ```js
-import NextTopLoader from 'nextjs-toploader';
+import NextTopLoader from '@thesgj/nextjs-toploader';
 
 export default function MyApp({ Component, pageProps }) {
   return (

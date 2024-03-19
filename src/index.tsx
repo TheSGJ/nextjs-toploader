@@ -1,17 +1,19 @@
+// deno-ts-ignore-file
+// deno-lint-ignore-file
+/* eslint-disable no-var */
 /* eslint-disable max-len */
-
-/**
- *
- * NextTopLoader
- *
- */
-
 /* eslint-disable prefer-const */
 /* eslint-disable quotes */
 
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import * as NProgress from 'nprogress';
+// @deno-types ="npm:preact@10.19.6"
+
+// @deno-types ="npm:nprogress@0.2.2"
+
+// @deno-types ="npm:@types/react@18.2.66"
+
 export type NextTopLoaderProps = {
   /**
    * Color for the TopLoader.
@@ -80,6 +82,11 @@ export type NextTopLoaderProps = {
   showAtBottom?: boolean;
 };
 
+/**
+ *
+ * NextTopLoader
+ *
+ */
 const NextTopLoader = ({
   color: propColor,
   height: propHeight,
@@ -93,7 +100,7 @@ const NextTopLoader = ({
   template,
   zIndex = 1600,
   showAtBottom = false,
-}: NextTopLoaderProps) => {
+}: NextTopLoaderProps): JSX.Element => {
   const defaultColor = '#29d';
   const defaultHeight = 3;
 
@@ -112,24 +119,49 @@ const NextTopLoader = ({
   const positionStyle = showAtBottom ? 'bottom: 0;' : 'top: 0;';
   const spinnerPositionStyle = showAtBottom ? 'bottom: 15px;' : 'top: 15px;';
 
+  /**
+   * CSS Styles for the NextTopLoader
+   */
   const styles = (
     <style>
       {`#nprogress{pointer-events:none}#nprogress .bar{background:${color};position:fixed;z-index:${zIndex};${positionStyle}left:0;width:100%;height:${height}px}#nprogress .peg{display:block;position:absolute;right:0;width:100px;height:100%;${boxShadow};opacity:1;-webkit-transform:rotate(3deg) translate(0px,-4px);-ms-transform:rotate(3deg) translate(0px,-4px);transform:rotate(3deg) translate(0px,-4px)}#nprogress .spinner{display:block;position:fixed;z-index:${zIndex};${spinnerPositionStyle}right:15px}#nprogress .spinner-icon{width:18px;height:18px;box-sizing:border-box;border:2px solid transparent;border-top-color:${color};border-left-color:${color};border-radius:50%;-webkit-animation:nprogress-spinner 400ms linear infinite;animation:nprogress-spinner 400ms linear infinite}.nprogress-custom-parent{overflow:hidden;position:relative}.nprogress-custom-parent #nprogress .bar,.nprogress-custom-parent #nprogress .spinner{position:absolute}@-webkit-keyframes nprogress-spinner{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}@keyframes nprogress-spinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}`}
     </style>
   );
 
-  // Convert the url to Absolute URL based on the current window location.
+  /**
+   * Convert the url to Absolute URL based on the current window location.
+   * @param url {string}
+   * @returns {string}
+   */
   const toAbsoluteURL = (url: string): string => {
     return new URL(url, window.location.href).href;
   };
 
-  // Check if it is hash anchor or same page anchor
+  /**
+   * Check if it is hash anchor or same page anchor
+   * @param currentUrl {string} Current Url Location
+   * @param newUrl {string} New Url detected with each anchor
+   * @returns {boolean}
+   */
   const isHashAnchor = (currentUrl: string, newUrl: string): boolean => {
     const current = new URL(toAbsoluteURL(currentUrl));
     const next = new URL(toAbsoluteURL(newUrl));
     return current.href.split('#')[0] === next.href.split('#')[0];
   };
-  React.useEffect(() => {
+
+  /**
+   * Check if it is Same Host name
+   * @param currentUrl {string} Current Url Location
+   * @param newUrl {string} New Url detected with each anchor
+   * @returns {boolean}
+   */
+  const isSameHostName = (currentUrl: string, newUrl: string): boolean => {
+    const current = new URL(toAbsoluteURL(currentUrl));
+    const next = new URL(toAbsoluteURL(newUrl));
+    return current.hostname.replace(/^www\./, '') === next.hostname.replace(/^www\./, '');
+  };
+
+  React.useEffect((): ReturnType<React.EffectCallback> => {
     NProgress.configure({
       showSpinner: showSpinner ?? true,
       trickle: crawl ?? true,
@@ -142,7 +174,13 @@ const NextTopLoader = ({
         '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>',
     });
 
-    function isAnchorOfCurrentUrl(currentUrl: string, newUrl: string) {
+    /**
+     * Check if the Current Url is same as New Url
+     * @param currentUrl {string}
+     * @param newUrl {string}
+     * @returns {boolean}
+     */
+    function isAnchorOfCurrentUrl(currentUrl: string, newUrl: string): boolean {
       const currentUrlObj = new URL(currentUrl);
       const newUrlObj = new URL(newUrl);
       // Compare hostname, pathname, and search parameters
@@ -161,15 +199,30 @@ const NextTopLoader = ({
       return false;
     }
 
-    // eslint-disable-next-line no-var
-    var npgclass = document.querySelectorAll('html');
+    // deno-lint-ignore no-var
+    var nProgressClass: NodeListOf<HTMLHtmlElement> = document.querySelectorAll('html');
+
+    const removeNProgressClass = (): void =>
+      nProgressClass.forEach((el: Element) => el.classList.remove('nprogress-busy'));
+
+    /**
+     * Find the closest anchor to trigger
+     * @param element {HTMLElement | null}
+     * @returns element {Element}
+     */
     function findClosestAnchor(element: HTMLElement | null): HTMLAnchorElement | null {
       while (element && element.tagName.toLowerCase() !== 'a') {
         element = element.parentElement;
       }
       return element as HTMLAnchorElement;
     }
-    function handleClick(event: MouseEvent) {
+
+    /**
+     *
+     * @param event {MouseEvent}
+     * @returns {void}
+     */
+    function handleClick(event: MouseEvent): void {
       try {
         const target = event.target as HTMLElement;
         const anchor = findClosestAnchor(target);
@@ -183,7 +236,12 @@ const NextTopLoader = ({
           const isSpecialScheme = ['tel:', 'mailto:', 'sms:', 'blob:', 'download:'].some((scheme) =>
             newUrl.startsWith(scheme)
           );
-          const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
+
+          const isAnchor: boolean = isAnchorOfCurrentUrl(currentUrl, newUrl);
+          const notSameHost = !isSameHostName(window.location.href, anchor.href);
+          if (notSameHost) {
+            return;
+          }
           if (
             newUrl === currentUrl ||
             isAnchor ||
@@ -191,26 +249,16 @@ const NextTopLoader = ({
             isSpecialScheme ||
             event.ctrlKey ||
             event.metaKey ||
-            isHashAnchor(window.location.href, anchor.href)
+            event.shiftKey ||
+            event.altKey ||
+            isHashAnchor(window.location.href, anchor.href) ||
+            !toAbsoluteURL(anchor.href).startsWith('http')
           ) {
             NProgress.start();
             NProgress.done();
-            [].forEach.call(npgclass, function (el: Element) {
-              el.classList.remove('nprogress-busy');
-            });
+            removeNProgressClass();
           } else {
             NProgress.start();
-            (function (history) {
-              const pushState = history.pushState;
-              history.pushState = function () {
-                NProgress.done();
-                [].forEach.call(npgclass, function (el: Element) {
-                  el.classList.remove('nprogress-busy');
-                });
-                // eslint-disable-next-line prefer-rest-params, @typescript-eslint/no-explicit-any
-                return pushState.apply(history, arguments as any);
-              };
-            })(window.history);
           }
         }
       } catch (err) {
@@ -220,21 +268,44 @@ const NextTopLoader = ({
         NProgress.done();
       }
     }
-    function handlePageHide() {
+
+    /**
+     * Complete TopLoader Progress
+     * @param {History}
+     * @returns {void}
+     */
+    ((history: History): void => {
+      const pushState = history.pushState;
+      history.pushState = (...args) => {
+        NProgress.done();
+        removeNProgressClass();
+        return pushState.apply(history, args);
+      };
+    })((window as Window).history);
+
+    function handlePageHide(): void {
       NProgress.done();
-      [].forEach.call(npgclass, function (el: Element) {
-        el.classList.remove('nprogress-busy');
-      });
+      removeNProgressClass();
+    }
+
+    /**
+     * Handle Browser Back and Forth Navigation
+     * @returns {void}
+     */
+    function handleBackAndForth(): void {
+      NProgress.done();
     }
 
     // Add the global click event listener
+    window.addEventListener('popstate', handleBackAndForth);
     document.addEventListener('click', handleClick);
     window.addEventListener('pagehide', handlePageHide);
 
     // Clean up the global click event listener when the component is unmounted
-    return () => {
+    return (): void => {
       document.removeEventListener('click', handleClick);
       window.removeEventListener('pagehide', handlePageHide);
+      window.removeEventListener('popstate', handleBackAndForth);
     };
   }, []);
 
