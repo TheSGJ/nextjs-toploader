@@ -71,6 +71,30 @@ export default function MyApp({ Component, pageProps }) {
 }
 ```
 
+### Usage with React, Vite React or any other React based component
+
+For rendering add `<NextTopLoader />` to your `return()` inside the <Router><Router/> component in `App()`:
+
+```js
+import NextTopLoader from 'nextjs-toploader';
+const App = () => {
+  return (
+    <div>
+    <Router>
+      <NextTopLoader color='red' showSpinner={false} />
+    <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/about" element={<About />} />
+    <Route path="*" element={<NotFound/>} />
+    </Routes>
+    </Router>
+    </div>
+  )
+}
+
+export default App;
+```
+
 ### Default Configuration
 
 If no props are passed to `<NextTopLoader />`, below is the default configuration applied.
