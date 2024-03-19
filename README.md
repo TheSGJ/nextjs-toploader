@@ -63,7 +63,7 @@ export default function MyApp({ Component, pageProps }) {
 }
 ```
 
-### Usage with React, Vite React or any other React based component
+### Usage with React, Vite React or any other React Based Framework
 
 For rendering add `<NextTopLoader />` to your `return()` inside the <Router><Router/> component in `App()` in your App.js:
 
