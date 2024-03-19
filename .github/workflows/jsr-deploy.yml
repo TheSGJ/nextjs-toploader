@@ -51,4 +51,4 @@ jobs:
         run: curl -fsSL https://deno.land/install.sh | sh
 
       - name: Publish JSR package using Deno
-        run: deno publish --allow-slow-types --allow-dirty
+        run: /home/runner/.deno/bin/deno publish --allow-slow-types --allow-dirty
