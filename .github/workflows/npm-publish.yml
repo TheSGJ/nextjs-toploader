@@ -1,4 +1,4 @@
-name: Publish Package to npmjs
+name: Publish nextjs-toploader to npmjs
 on:
   release:
     types: [published]
@@ -26,10 +26,12 @@ jobs:
       - name: Compile the Library
         run: yarn build-lib
       # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@v4
+      - name: Setup the node
+        uses: actions/setup-node@v4
         with:
           node-version: '20.11.1'
           registry-url: 'https://registry.npmjs.org'
-      - run: npm publish
+      - name: Publish nextjs-toploader on npm
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
