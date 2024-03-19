@@ -39,11 +39,9 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Publish nextjs-toploader on npm
         run: npm publish --access public --provenance
+        continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Checkout Repository
-        uses: actions/checkout@v4
 
       - name: Delete Current README.md
         run: rm README.md
