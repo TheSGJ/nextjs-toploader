@@ -194,11 +194,7 @@ const NextTopLoader = ({
             event.metaKey ||
             isHashAnchor(window.location.href, anchor.href)
           ) {
-            NProgress.start();
-            NProgress.done();
-            [].forEach.call(npgclass, function (el: Element) {
-              el.classList.remove('nprogress-busy');
-            });
+            return;
           } else {
             NProgress.start();
             (function (history) {
