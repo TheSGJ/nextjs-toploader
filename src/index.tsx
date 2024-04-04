@@ -9,9 +9,9 @@
 /* eslint-disable prefer-const */
 /* eslint-disable quotes */
 
+import * as NProgress from 'nprogress';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import * as NProgress from 'nprogress';
 export type NextTopLoaderProps = {
   /**
    * Color for the TopLoader.
@@ -176,7 +176,8 @@ const NextTopLoader = ({
         const newUrl = anchor?.href;
         if (newUrl) {
           const currentUrl = window.location.href;
-          // const newUrl = (anchor as HTMLAnchorElement).href;
+          const isSameUrl = currentUrl.split('#')[0] === newUrl.split('#')[0];
+
           const isExternalLink = (anchor as HTMLAnchorElement).target === '_blank';
 
           // Check for Special Schemes
@@ -185,7 +186,7 @@ const NextTopLoader = ({
           );
           const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
           if (
-            newUrl === currentUrl ||
+            isSameUrl ||
             isAnchor ||
             isExternalLink ||
             isSpecialScheme ||
