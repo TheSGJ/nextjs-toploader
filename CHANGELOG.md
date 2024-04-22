@@ -133,3 +133,10 @@
 
 - Fix to add use client in jsr usage with nextjs
 - Update README about support for React
+
+## v1.6.12
+
+### Fixed
+
+- Fixed indefinite animation when replacing current route 
+- Moved @types/nprogress into devDependencies

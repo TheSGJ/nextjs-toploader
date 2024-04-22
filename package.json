@@ -1,6 +1,6 @@
 {
   "name": "nextjs-toploader",
-  "version": "1.6.11",
+  "version": "1.6.12",
   "description": "A Next.js Top Loading Bar component made using nprogress, works with Next.js 14 and React.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

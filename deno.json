@@ -1,6 +1,6 @@
 {
   "name": "@thesgj/nextjs-toploader",
-  "version": "1.6.11",
+  "version": "1.6.12",
   "exports": "./src/index.tsx",
   "compilerOptions": {
     "jsx": "react-jsx",
