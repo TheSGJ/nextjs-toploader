@@ -1,0 +1,12 @@
+{
+  "name": "@thesgj/nextjs-toploader",
+  "version": "1.6.11",
+  "exports": "./src/index.tsx",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "npm:preact",
+    "types": ["./src/index.d.ts", "./deno.d.ts"]
+  },
+  "lib": ["dom", "dom.iterable", "esnext"],
+  "imports": { "preact": "npm:preact@^10.19.7" }
+}
