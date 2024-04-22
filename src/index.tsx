@@ -112,8 +112,8 @@ const NextTopLoader = ({
     !shadow && shadow !== undefined
       ? ''
       : shadow
-      ? `box-shadow:${shadow}`
-      : `box-shadow:0 0 10px ${color},0 0 5px ${color}`;
+        ? `box-shadow:${shadow}`
+        : `box-shadow:0 0 10px ${color},0 0 5px ${color}`;
 
   // Check if to show at bottom
   const positionStyle = showAtBottom ? 'bottom: 0;' : 'top: 0;';
@@ -270,7 +270,7 @@ const NextTopLoader = ({
     }
 
     /**
-     * Complete TopLoader Progress
+     * Complete TopLoader Progress on adding new entry to history stack
      * @param {History}
      * @returns {void}
      */
@@ -280,6 +280,20 @@ const NextTopLoader = ({
         NProgress.done();
         removeNProgressClass();
         return pushState.apply(history, args);
+      };
+    })((window as Window).history);
+
+    /**
+ * Complete TopLoader Progress on replacing current entry of history stack
+ * @param {History}
+ * @returns {void}
+ */
+    ((history: History): void => {
+      const replaceState = history.replaceState;
+      history.replaceState = (...args) => {
+        NProgress.done();
+        removeNProgressClass();
+        return replaceState.apply(history, args);
       };
     })((window as Window).history);
 
