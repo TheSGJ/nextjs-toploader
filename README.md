@@ -122,7 +122,7 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 
 ---
 
-UPI ID: thesgj@sbi
+UPI ID: thesgj@airtel
 
 [![Sponsor me on GitHub](https://img.shields.io/badge/Sponsor%20me%20on-GitHub-brightgreen)](https://github.com/sponsors/TheSGJ)
 
