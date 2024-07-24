@@ -94,3 +94,49 @@
 ### Fixed
 
 - Fixed the loader when using CMD + Click in macOS
+
+## v1.6.6
+
+### Fixed
+
+- Fixed the TopLoader to work with special schemes such as mailto, sms, tel, etc
+- Fixed the TopLoader for "#" hash anchor
+
+## v1.6.9
+
+### Fixed
+
+- Resolve progress bar when navigating back from external page
+- Fixed the TopLoader for anchor url having other domain name
+- Moved histry.pushState function outside the MouseEvent, it was triggering for every mouse click
+- Fixed TopLoader getting stuck on popstate events
+- Fixed the use of rest params and passing its type as any
+- Fixed for all Special Schemes, TopLoader will not run on special schemes now onwards
+- Fixed for shift key and alt key
+
+### Updated
+
+- Added Type declarations for few functions
+- Refactor the whole code to make it more readable
+- Updated to add support for the JSR Package Manager
+- Updated to version 1.6.9 to avoid version gap for JSR
+
+## v1.6.10
+
+### Fixed
+
+- Fix npm-publish.yml for gh actions to publish with provenance
+
+## v1.6.11
+
+### Fixed
+
+- Fix to add use client in jsr usage with nextjs
+- Update README about support for React
+
+## v1.6.12
+
+### Fixed
+
+- Fixed indefinite animation when replacing current route 
+- Moved @types/nprogress into devDependencies
