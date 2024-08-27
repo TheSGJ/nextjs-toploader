@@ -42,18 +42,3 @@ jobs:
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Delete Current README.md
-        run: rm README.md
-
-      - name: Modify README for JSR.io
-        run: mv JSR.md README.md
-
-      - name: Move index.d.ts in src directory for JSR
-        run: cp dist/index.d.ts src/
-
-      - name: Install Deno
-        run: curl -fsSL https://deno.land/install.sh | sh
-
-      - name: Publish JSR package using Deno
-        run: /home/runner/.deno/bin/deno publish --allow-slow-types --allow-dirty
