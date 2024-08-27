@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "jsx": "react",
-    "target": "esnext",
+    "target": "es6",
     "module": "commonjs",
-    "strict": false,
+    "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "noImplicitThis": true,
@@ -23,5 +23,7 @@
       }
     ]
   },
-  "files": ["src/index.tsx"]
+  "files": ["src/index.tsx"],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
+  "exclude": ["./dist", "node_modules"]
 }

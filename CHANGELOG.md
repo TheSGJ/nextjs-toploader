@@ -138,5 +138,17 @@
 
 ### Fixed
 
-- Fixed indefinite animation when replacing current route 
+- Fixed indefinite animation when replacing current route
 - Moved @types/nprogress into devDependencies
+
+## v2.6.12
+
+### Added (major changes)
+
+- Added PagesTopLoader Component to make useRouter hook supported in pages router
+
+- Added custom useRouter hook to trigger TopLoader for app router
+
+### Updated
+
+- Updated README.md Documentation made it more readable.

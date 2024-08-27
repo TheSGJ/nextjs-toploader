@@ -1,13 +1,13 @@
+'use client';
 // deno-ts-ignore-file
 // deno-lint-ignore-file
 /* eslint-disable no-var */
 /* eslint-disable max-len */
 /* eslint-disable prefer-const */
-/* eslint-disable quotes */
-
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import * as NProgress from 'nprogress';
+
 // @deno-types ="npm:preact@10.19.6"
 
 // @deno-types ="npm:nprogress@0.2.2"
@@ -85,8 +85,12 @@ export type NextTopLoaderProps = {
 /**
  *
  * NextTopLoader
+ * @license MIT
+ * @param {NextTopLoaderProps} props The properties to configure NextTopLoader
+ * @returns {React.JSX.Element}
  *
  */
+
 const NextTopLoader = ({
   color: propColor,
   height: propHeight,
@@ -100,7 +104,7 @@ const NextTopLoader = ({
   template,
   zIndex = 1600,
   showAtBottom = false,
-}: NextTopLoaderProps): JSX.Element => {
+}: NextTopLoaderProps): React.JSX.Element => {
   const defaultColor = '#29d';
   const defaultHeight = 3;
 
@@ -341,3 +345,6 @@ NextTopLoader.propTypes = {
   zIndex: PropTypes.number,
   showAtBottom: PropTypes.bool,
 };
+
+export { useRouter } from './useRouter';
+export {  PagesTopLoader } from './PagesTopLoader';
