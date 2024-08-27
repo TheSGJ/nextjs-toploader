@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
 For rendering add `<PagesTopLoader />` to your `return()` in `MyApp()` (Recommended):
 
 ```js
-import { PagesTopLoader } from 'nextjs-toploader';
+import { PagesTopLoader } from 'nextjs-toploader/pages';
 
 export default function MyApp({ Component, pageProps }) {
   return (
@@ -74,7 +74,7 @@ For triggering TopLoader when using `useRouter` hook (app router):
 ```js
 // Import the useRouter hook from nextjs-toploader to trigger the TopLoader
 
-import { useRouter } from 'nextjs-toploader';
+import { useRouter } from 'nextjs-toploader/app';
 ```
 
 Then simply use it in your code for example:
@@ -89,7 +89,7 @@ router.push('/some-page');
 For triggering TopLoader when using `useRouter` add `<PagesTopLoader />` to your `return()` in `MyApp()` :
 
 ```js
-import { PagesTopLoader } from 'nextjs-toploader';
+import { PagesTopLoader } from 'nextjs-toploader/pages';
 
 export default function MyApp({ Component, pageProps }) {
   return (

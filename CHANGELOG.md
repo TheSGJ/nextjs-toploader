@@ -152,3 +152,16 @@
 ### Updated
 
 - Updated README.md Documentation made it more readable.
+
+## v3.6.12
+
+### Added (major changes)
+
+- Added new import for PagesTopLoader
+
+- Added new import for custom useRouter hook
+
+### Updated
+
+- Fixing for react js
+- Updated README.md Documentation made it more readable.

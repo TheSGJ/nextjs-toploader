@@ -23,7 +23,7 @@
       }
     ]
   },
-  "files": ["src/index.tsx"],
+  "files": ["src/index.tsx", "src/pages.tsx", "src/app.ts"],
   "include": ["./src/**/*.ts", "./src/**/*.tsx"],
   "exclude": ["./dist", "node_modules"]
 }

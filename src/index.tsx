@@ -345,6 +345,3 @@ NextTopLoader.propTypes = {
   zIndex: PropTypes.number,
   showAtBottom: PropTypes.bool,
 };
-
-export { useRouter } from './useRouter';
-export {  PagesTopLoader } from './PagesTopLoader';
