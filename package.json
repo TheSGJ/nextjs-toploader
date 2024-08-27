@@ -10,6 +10,11 @@
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "typecheck": "tsc -p tsconfig.json"
   },
+  "exports": {
+    ".": "./dist/index.js",
+    "./app": "./dist/app.js",
+    "./pages": "./dist/pages.js"
+  },
   "funding": {
     "url": "https://buymeacoffee.com/thesgj"
   },

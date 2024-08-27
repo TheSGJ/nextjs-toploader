@@ -165,3 +165,9 @@
 
 - Fixing for react js
 - Updated README.md Documentation made it more readable.
+
+## v3.6.13
+
+### Fixed
+
+- Fixed imports, PagesTopLoader imported incorrectly like nextjs-toploader/dist/pages and useEffect like nextjs-toploader/dist/app
