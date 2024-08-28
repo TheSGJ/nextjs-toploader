@@ -177,3 +177,13 @@
 ### Fixed
 
 - Fixed typo in template value and shadow value in prop type table in README
+
+## v3.6.15
+
+### Updated
+
+- Updated copyright year in LICENSE
+
+### Fixed
+
+- Fixed typo in template value in prop type table in README

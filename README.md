@@ -160,20 +160,20 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 
 #### `NextTopLoaderProps` (props passed to the TopLoader)
 
-| **Name**          | **Type**          | **Default Value**                                                                                                                     |
-| ----------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `color`           | `string`          | `"#2299DD"`                                                                                                                           |
-| `initialPosition` | `number`          | `0.08`                                                                                                                                |
-| `crawlSpeed`      | `number`          | `200`                                                                                                                                 |
-| `height`          | `number`          | `3`                                                                                                                                   |
-| `crawl`           | `boolean`         | `true`                                                                                                                                |
-| `showSpinner`     | `boolean`         | `true`                                                                                                                                |
-| `easing`          | `string`          | `"ease"`                                                                                                                              |
-| `speed`           | `number`          | `200`                                                                                                                                 |
-| `shadow`          | `string \| false` | `"0 0 10px #2299DD,0 0 5px #2299DD"`                                                                                                  |
-| `template`        | `string`          | `<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>` |
-| `zIndex`          | `number`          | `1600`                                                                                                                                |
-| `showAtBottom`    | `boolean`         | `false`                                                                                                                               |
+| **Name**          | **Type**          | **Default Value**                                                                                                                       |
+| ----------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `color`           | `string`          | `"#2299DD"`                                                                                                                             |
+| `initialPosition` | `number`          | `0.08`                                                                                                                                  |
+| `crawlSpeed`      | `number`          | `200`                                                                                                                                   |
+| `height`          | `number`          | `3`                                                                                                                                     |
+| `crawl`           | `boolean`         | `true`                                                                                                                                  |
+| `showSpinner`     | `boolean`         | `true`                                                                                                                                  |
+| `easing`          | `string`          | `"ease"`                                                                                                                                |
+| `speed`           | `number`          | `200`                                                                                                                                   |
+| `shadow`          | `string \| false` | `"0 0 10px #2299DD,0 0 5px #2299DD"`                                                                                                    |
+| `template`        | `string`          | `"<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>"` |
+| `zIndex`          | `number`          | `1600`                                                                                                                                  |
+| `showAtBottom`    | `boolean`         | `false`                                                                                                                                 |
 
 ## Contributors
 
