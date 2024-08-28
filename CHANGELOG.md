@@ -171,3 +171,9 @@
 ### Fixed
 
 - Fixed imports, PagesTopLoader imported incorrectly like nextjs-toploader/dist/pages and useEffect like nextjs-toploader/dist/app
+
+## v3.6.14
+
+### Fixed
+
+- Fixed typo in template value and shadow value in prop type table in README
