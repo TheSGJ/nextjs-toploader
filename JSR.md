@@ -2,30 +2,30 @@
 
 - A Next.js Top Loading Bar component made using nprogress, works with Next.js 14 and React.
 
-[![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/nextjs-toploader)
-[![NPM Downloads](https://img.shields.io/npm/dm/nextjs-toploader?&style=flat-square)](https://www.npmjs.com/package/nextjs-toploader)
-[![JSR](https://jsr.io/badges/@thesgj/nextjs-toploader)](https://jsr.io/badges/@thesgj/nextjs-toploader)
+[![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/@thesgj/nextjs-toploader)
+[![NPM Downloads](https://img.shields.io/npm/dm/@thesgj/nextjs-toploader?&style=flat-square)](https://www.npmjs.com/package/@thesgj/nextjs-toploader)
+[![JSR](https://jsr.io/badges/@thesgj/@thesgj/nextjs-toploader)](https://jsr.io/badges/@thesgj/@thesgj/nextjs-toploader)
 
-For using npm package manager instead see: (https://www.npmjs.com/package/nextjs-toploader)
+For using npm package manager instead see: (https://www.npmjs.com/package/@thesgj/nextjs-toploader)
 
 ## Install
 
 using jsr with npm:
 
 ```bash
-npx jsr add @thesgj/nextjs-toploader
+npx jsr add @thesgj/@thesgj/nextjs-toploader
 ```
 
 using jsr with yarn:
 
 ```bash
-yarn dlx jsr add @thesgj/nextjs-toploader
+yarn dlx jsr add @thesgj/@thesgj/nextjs-toploader
 ```
 
 using deno:
 
 ```bash
-deno add @thesgj/nextjs-toploader
+deno add @thesgj/@thesgj/nextjs-toploader
 ```
 
 ## Usage
@@ -57,40 +57,77 @@ export default function RootLayout({ children }) {
 
 ### Usage with `pages/_app.js` for `pages` folder structure
 
-For rendering add `<NextTopLoader />` to your `return()` in `MyApp()`:
+For rendering add `<PagesTopLoader />` to your `return()` in `MyApp()` (Recommended):
 
 ```js
-import NextTopLoader from '@thesgj/nextjs-toploader';
+import { PagesTopLoader } from '@thesgj/nextjs-toploader/pages';
 
 export default function MyApp({ Component, pageProps }) {
   return (
     <>
-      <NextTopLoader />
+      <PagesTopLoader />
       <Component {...pageProps} />;
     </>
   );
 }
 ```
 
+You can also use `<NextTopLoader />` in `pages` router, but it's recommended to use `<PagesTopLoader />` for `useRouter` hook support from `@thesgj/nextjs-toploader` version 2.6.12 onwards
+
+## Compatibility with `useRouter` hook
+
+### `useRouter` hook usage with `app/layout.js` for `app` folder structure
+
+For triggering TopLoader when using `useRouter` hook (app router):
+
+```js
+// Import the useRouter hook from @thesgj/nextjs-toploader to trigger the TopLoader
+
+import { useRouter } from '@thesgj/nextjs-toploader/app';
+```
+
+Then simply use it in your code for example:
+
+```js
+const router = useRouter();
+router.push('/some-page');
+```
+
+### `useRouter` hook usage with `pages/_app.js` for `pages` folder structure
+
+For triggering TopLoader when using `useRouter` add `<PagesTopLoader />` to your `return()` in `MyApp()` :
+
+```js
+import { PagesTopLoader } from '@thesgj/nextjs-toploader/pages';
+
+export default function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <PagesTopLoader />
+      <Component {...pageProps} />;
+    </>
+  );
+}
+```
+
+---
+
 ### Usage with React, Vite React or any other React Based Framework
 
 For rendering add `<NextTopLoader />` to your `return()` inside the <Router><Router/> component in `App()` in your App.js:
-
 
 ```js
 import NextTopLoader from '@thesgj/nextjs-toploader';
 const App = () => {
   return (
     <div>
-    <Router>
-      <NextTopLoader />
-    <Routes>
-    {/* Your Routes Here */}
-    </Routes>
-    </Router>
+      <Router>
+        <NextTopLoader />
+        <Routes>{/* Your Routes Here */}</Routes>
+      </Router>
     </div>
-  )
-}
+  );
+};
 
 export default App;
 ```
@@ -130,10 +167,48 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 - `zIndex`: defines zIndex for the TopLoader.
 - `showAtBottom`: To show the TopLoader at bottom. (increase height for the TopLoader to ensure it's visibility at the mobile devices)
 
+#### `NextTopLoaderProps` (props passed to the TopLoader)
+
+| **Name**          | **Type**          | **Default Value**                                                                                                                                   |
+| ----------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `color`           | `string`          | `"#29d"`                                                                                                                                            |
+| `initialPosition` | `number`          | `0.08`                                                                                                                                              |
+| `crawlSpeed`      | `number`          | `200`                                                                                                                                               |
+| `height`          | `number`          | `3`                                                                                                                                                 |
+| `crawl`           | `boolean`         | `true`                                                                                                                                              |
+| `showSpinner`     | `boolean`         | `true`                                                                                                                                              |
+| `easing`          | `string`          | `"ease"`                                                                                                                                            |
+| `speed`           | `number`          | `200`                                                                                                                                               |
+| `shadow`          | `string \| false` | `"0 0 10px ${color}, 0 0 5px ${color}"`                                                                                                             |
+| `template`        | `string`          | `"<div class=\"bar\" role=\"bar\"><div class=\"peg\"></div></div><div class=\"spinner\" role=\"spinner\"><div class=\"spinner-icon\"></div></div>"` |
+| `zIndex`          | `number`          | `1600`                                                                                                                                              |
+| `showAtBottom`    | `boolean`         | `false`                                                                                                                                             |
+
+## Contributors
+
+### Code Contributors
+
+This project was made possible thanks to the contributions of its code contributors.
+
+<img src="https://opencollective.com/@thesgj/nextjs-toploader/contributors.svg?width=890&button=false" />
+
+### Financial Contributors
+
+We extend a huge thanks to our financial contributor for helping us sustain this community
+
+<a href="https://sentry.io">
+  <img src="https://thanks.dev/assets/partner-logos/sentry-color.svg" alt="Sentry" width="200"/>
+
+</a>
+
 ---
 
-UPI ID: thesgj@sbi
+Support this project with your organization. Your logo will show up here with a link to your website. You can Support this project on Open Collective or Equivalent Method from the below
+
+UPI ID: thesgj@upi (International UPI ID)
 
 [![Sponsor me on GitHub](https://img.shields.io/badge/Sponsor%20me%20on-GitHub-brightgreen)](https://github.com/sponsors/TheSGJ)
 
 [!["Buy Me A Coffee"](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/thesgj)
+
+[![OpenCollective](https://opencollective.com/webpack/donate/button.png?color=blue)](https://opencollective.com/@thesgj/nextjs-toploader)

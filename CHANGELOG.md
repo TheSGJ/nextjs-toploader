@@ -138,5 +138,52 @@
 
 ### Fixed
 
-- Fixed indefinite animation when replacing current route 
+- Fixed indefinite animation when replacing current route
 - Moved @types/nprogress into devDependencies
+
+## v2.6.12
+
+### Added (major changes)
+
+- Added PagesTopLoader Component to make useRouter hook supported in pages router
+
+- Added custom useRouter hook to trigger TopLoader for app router
+
+### Updated
+
+- Updated README.md Documentation made it more readable.
+
+## v3.6.12
+
+### Added (major changes)
+
+- Added new import for PagesTopLoader
+
+- Added new import for custom useRouter hook
+
+### Updated
+
+- Fixing for react js
+- Updated README.md Documentation made it more readable.
+
+## v3.6.13
+
+### Fixed
+
+- Fixed imports, PagesTopLoader imported incorrectly like nextjs-toploader/dist/pages and useEffect like nextjs-toploader/dist/app
+
+## v3.6.14
+
+### Fixed
+
+- Fixed typo in template value and shadow value in prop type table in README
+
+## v3.6.15
+
+### Updated
+
+- Updated copyright year in LICENSE
+
+### Fixed
+
+- Fixed typo in template value in prop type table in README

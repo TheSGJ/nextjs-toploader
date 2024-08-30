@@ -1,17 +1,22 @@
 {
   "name": "nextjs-toploader",
-  "version": "1.6.12",
+  "version": "3.6.15",
   "description": "A Next.js Top Loading Bar component made using nprogress, works with Next.js 14 and React.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build-lib": "tsup && sed -i '1s/^/\"use client\";/' dist/index.js",
+    "build-lib": "tsup",
     "lint": "eslint --fix --cache src/",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "typecheck": "tsc -p tsconfig.json"
   },
+  "exports": {
+    ".": "./dist/index.js",
+    "./app": "./dist/app.js",
+    "./pages": "./dist/pages.js"
+  },
   "funding": {
-    "url": "https://github.com/sponsors/TheSGJ"
+    "url": "https://buymeacoffee.com/thesgj"
   },
   "repository": {
     "type": "git",
