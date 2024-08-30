@@ -162,9 +162,6 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 Live demo: https://nextjs-toploader-demo.vercel.app/  
 Repository: https://github.com/iliaamiri/nextjs-toploader
 
----
-
-UPI ID: thesgj@airtel
 #### `NextTopLoaderProps` (props passed to the TopLoader)
 
 | **Name**          | **Type**          | **Default Value**                                                                                                                       |
