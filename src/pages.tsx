@@ -13,6 +13,7 @@ export const PagesTopLoader = ({
   color: propColor,
   height: propHeight,
   showSpinner,
+  spinnerPosition,
   crawl,
   crawlSpeed,
   initialPosition,
@@ -39,7 +40,26 @@ export const PagesTopLoader = ({
 
   // Check if to show at bottom
   const positionStyle = showAtBottom ? 'bottom: 0;' : 'top: 0;';
-  const spinnerPositionStyle = showAtBottom ? 'bottom: 15px;' : 'top: 15px;';
+
+  // Setting the corner position of the spinner
+  let spinnerPositionStyle;
+  switch (spinnerPosition) {
+    case 'top-right':
+      spinnerPositionStyle = 'top: 15px; right: 15px;';
+      break;
+    case 'top-left':
+      spinnerPositionStyle = 'top: 15px; left: 15px;';
+      break;
+    case 'bottom-right':
+      spinnerPositionStyle = 'bottom: 15px; right: 15px;';
+      break;
+    case 'bottom-left':
+      spinnerPositionStyle = 'bottom: 15px; left: 15px;';
+      break;
+    default:
+      spinnerPositionStyle = 'top: 15px; right: 15px;';
+      break;
+  }
 
   /**
    * CSS Styles for the NextTopLoader
@@ -85,6 +105,7 @@ PagesTopLoader.propTypes = {
   color: PropTypes.string,
   height: PropTypes.number,
   showSpinner: PropTypes.bool,
+  spinnerPosition: PropTypes.string,
   crawl: PropTypes.bool,
   crawlSpeed: PropTypes.number,
   initialPosition: PropTypes.number,
