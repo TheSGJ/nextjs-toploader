@@ -80,6 +80,12 @@ export type NextTopLoaderProps = {
    *
    */
   showAtBottom?: boolean;
+  /**
+   * To show the TopLoader for hash anchors.
+   * @default true
+   *
+   */
+  showForHashAnchor?: boolean;
 };
 
 /**
@@ -104,6 +110,7 @@ const NextTopLoader = ({
   template,
   zIndex = 1600,
   showAtBottom = false,
+  showForHashAnchor = true,
 }: NextTopLoaderProps): React.JSX.Element => {
   const defaultColor = '#29d';
   const defaultHeight = 3;
@@ -241,21 +248,26 @@ const NextTopLoader = ({
             newUrl.startsWith(scheme)
           );
 
-          const isAnchor: boolean = isAnchorOfCurrentUrl(currentUrl, newUrl);
           const notSameHost = !isSameHostName(window.location.href, anchor.href);
           if (notSameHost) {
             return;
           }
+
+          const isAnchorOrHashAnchor =
+            isAnchorOfCurrentUrl(currentUrl, newUrl) || isHashAnchor(window.location.href, anchor.href);
+          if (!showForHashAnchor && isAnchorOrHashAnchor) {
+            return;
+          }
+
           if (
             newUrl === currentUrl ||
-            isAnchor ||
             isExternalLink ||
             isSpecialScheme ||
+            isAnchorOrHashAnchor ||
             event.ctrlKey ||
             event.metaKey ||
             event.shiftKey ||
             event.altKey ||
-            isHashAnchor(window.location.href, anchor.href) ||
             !toAbsoluteURL(anchor.href).startsWith('http')
           ) {
             NProgress.start();
@@ -288,10 +300,10 @@ const NextTopLoader = ({
     })((window as Window).history);
 
     /**
- * Complete TopLoader Progress on replacing current entry of history stack
- * @param {History}
- * @returns {void}
- */
+     * Complete TopLoader Progress on replacing current entry of history stack
+     * @param {History}
+     * @returns {void}
+     */
     ((history: History): void => {
       const replaceState = history.replaceState;
       history.replaceState = (...args) => {
