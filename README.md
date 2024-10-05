@@ -135,6 +135,7 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
   height={3}
   crawl={true}
   showSpinner={true}
+  spinnerPosition="top-right"
   easing="ease"
   speed={200}
   shadow="0 0 10px #2299DD,0 0 5px #2299DD"
@@ -153,6 +154,7 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 - `height`: height of TopLoader in `px`.
 - `crawl`: auto incrementing behavior for the TopLoader.
 - `showSpinner`: to show spinner or not.
+- `spinnerPosition`: to change the corner position of the spinner (top-right, top-left, bottom-right, bottom-left).
 - `shadow`: a smooth shadow for the TopLoader. (set to `false` to disable it)
 - `template`: to include custom HTML attributes for the TopLoader.
 - `zIndex`: defines zIndex for the TopLoader.
@@ -168,6 +170,7 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 | `height`          | `number`          | `3`                                                                                                                                     |
 | `crawl`           | `boolean`         | `true`                                                                                                                                  |
 | `showSpinner`     | `boolean`         | `true`                                                                                                                                  |
+| `spinnerPosition` | `string`          | `"top-right"`                                                                                                                           |
 | `easing`          | `string`          | `"ease"`                                                                                                                                |
 | `speed`           | `number`          | `200`                                                                                                                                   |
 | `shadow`          | `string \| false` | `"0 0 10px #2299DD,0 0 5px #2299DD"`                                                                                                    |
