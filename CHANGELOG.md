@@ -187,3 +187,13 @@
 ### Fixed
 
 - Fixed typo in template value in prop type table in README
+
+## v3.7.15
+
+### Added
+
+- Added option to control showing of top loader for hash anchors
+
+### Updated
+
+- Updated README.md Documentation for `showForHashAnchor`
