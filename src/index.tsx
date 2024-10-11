@@ -220,7 +220,7 @@ const NextTopLoader = ({
     }
 
     // Add the global click event listener
-    document.addEventListener('click', handleClick);
+    document.addEventListener('click', handleClick, { capture: true });
 
     // Clean up the global click event listener when the component is unmounted
     return () => {
