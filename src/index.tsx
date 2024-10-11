@@ -129,6 +129,10 @@ const NextTopLoader = ({
     const next = new URL(toAbsoluteURL(newUrl));
     return current.href.split('#')[0] === next.href.split('#')[0];
   };
+
+  const isDisabledViaAttribute = (element: HTMLElement | null) =>
+    element?.getAttribute('data-disable-loader') === 'true';
+
   React.useEffect(() => {
     NProgress.configure({
       showSpinner: showSpinner ?? true,
@@ -174,7 +178,8 @@ const NextTopLoader = ({
         const target = event.target as HTMLElement;
         const anchor = findClosestAnchor(target);
         const newUrl = anchor?.href;
-        const loaderDisabled = anchor?.getAttribute('data-disable-loader') === 'true';
+
+        const loaderDisabled = isDisabledViaAttribute(target) || isDisabledViaAttribute(anchor);
 
         if (newUrl && !loaderDisabled) {
           const currentUrl = window.location.href;
