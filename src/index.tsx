@@ -174,7 +174,9 @@ const NextTopLoader = ({
         const target = event.target as HTMLElement;
         const anchor = findClosestAnchor(target);
         const newUrl = anchor?.href;
-        if (newUrl) {
+        const loaderDisabled = anchor?.getAttribute('data-disable-loader') === 'true';
+
+        if (newUrl && !loaderDisabled) {
           const currentUrl = window.location.href;
           const isSameUrl = currentUrl.split('#')[0] === newUrl.split('#')[0];
 
