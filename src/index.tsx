@@ -174,9 +174,7 @@ const NextTopLoader = ({
         const target = event.target as HTMLElement;
         const anchor = findClosestAnchor(target);
         const newUrl = anchor?.href;
-        const loaderDisabled = anchor?.getAttribute('data-disable-loader') === 'true';
-
-        if (newUrl && !loaderDisabled) {
+        if (newUrl) {
           const currentUrl = window.location.href;
           const isSameUrl = currentUrl.split('#')[0] === newUrl.split('#')[0];
 
@@ -221,8 +219,8 @@ const NextTopLoader = ({
       }
     }
 
-    // Add the global click event listener.
-    document.addEventListener('click', handleClick);
+    // Add the global click event listener
+    document.addEventListener('click', handleClick, { capture: true });
 
     // Clean up the global click event listener when the component is unmounted
     return () => {
