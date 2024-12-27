@@ -1,12 +1,12 @@
-"use client";
+'use client';
 // deno-ts-ignore-file
 // deno-lint-ignore-file
 /* eslint-disable no-var */
 /* eslint-disable max-len */
 /* eslint-disable prefer-const */
-import * as PropTypes from "prop-types";
-import * as React from "react";
-import * as NProgress from "nprogress";
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
+import * as NProgress from 'nprogress';
 
 // @deno-types ="npm:preact@10.19.6"
 
@@ -112,7 +112,7 @@ const NextTopLoader = ({
   showAtBottom = false,
   showForHashAnchor = true,
 }: NextTopLoaderProps): React.JSX.Element => {
-  const defaultColor = "#29d";
+  const defaultColor = '#29d';
   const defaultHeight = 3;
 
   const color = propColor ?? defaultColor;
@@ -121,14 +121,14 @@ const NextTopLoader = ({
   // Any falsy (except undefined) will disable the shadow
   const boxShadow =
     !shadow && shadow !== undefined
-      ? ""
+      ? ''
       : shadow
-      ? `box-shadow:${shadow}`
-      : `box-shadow:0 0 10px ${color},0 0 5px ${color}`;
+        ? `box-shadow:${shadow}`
+        : `box-shadow:0 0 10px ${color},0 0 5px ${color}`;
 
   // Check if to show at bottom
-  const positionStyle = showAtBottom ? "bottom: 0;" : "top: 0;";
-  const spinnerPositionStyle = showAtBottom ? "bottom: 15px;" : "top: 15px;";
+  const positionStyle = showAtBottom ? 'bottom: 0;' : 'top: 0;';
+  const spinnerPositionStyle = showAtBottom ? 'bottom: 15px;' : 'top: 15px;';
 
   /**
    * CSS Styles for the NextTopLoader
@@ -157,7 +157,7 @@ const NextTopLoader = ({
   const isHashAnchor = (currentUrl: string, newUrl: string): boolean => {
     const current = new URL(toAbsoluteURL(currentUrl));
     const next = new URL(toAbsoluteURL(newUrl));
-    return current.href.split("#")[0] === next.href.split("#")[0];
+    return current.href.split('#')[0] === next.href.split('#')[0];
   };
 
   /**
@@ -169,10 +169,7 @@ const NextTopLoader = ({
   const isSameHostName = (currentUrl: string, newUrl: string): boolean => {
     const current = new URL(toAbsoluteURL(currentUrl));
     const next = new URL(toAbsoluteURL(newUrl));
-    return (
-      current.hostname.replace(/^www\./, "") ===
-      next.hostname.replace(/^www\./, "")
-    );
+    return current.hostname.replace(/^www\./, '') === next.hostname.replace(/^www\./, '');
   };
 
   React.useEffect((): ReturnType<React.EffectCallback> => {
@@ -181,7 +178,7 @@ const NextTopLoader = ({
       trickle: crawl ?? true,
       trickleSpeed: crawlSpeed ?? 200,
       minimum: initialPosition ?? 0.08,
-      easing: easing ?? "ease",
+      easing: easing ?? 'ease',
       speed: speed ?? 200,
       template:
         template ??
@@ -207,32 +204,25 @@ const NextTopLoader = ({
         const currentHash = currentUrlObj.hash;
         const newHash = newUrlObj.hash;
         return (
-          currentHash !== newHash &&
-          currentUrlObj.href.replace(currentHash, "") ===
-            newUrlObj.href.replace(newHash, "")
+          currentHash !== newHash && currentUrlObj.href.replace(currentHash, '') === newUrlObj.href.replace(newHash, '')
         );
       }
       return false;
     }
 
     // deno-lint-ignore no-var
-    var nProgressClass: NodeListOf<HTMLHtmlElement> =
-      document.querySelectorAll("html");
+    var nProgressClass: NodeListOf<HTMLHtmlElement> = document.querySelectorAll('html');
 
     const removeNProgressClass = (): void =>
-      nProgressClass.forEach((el: Element) =>
-        el.classList.remove("nprogress-busy")
-      );
+      nProgressClass.forEach((el: Element) => el.classList.remove('nprogress-busy'));
 
     /**
      * Find the closest anchor to trigger
      * @param element {HTMLElement | null}
      * @returns element {Element}
      */
-    function findClosestAnchor(
-      element: HTMLElement | null
-    ): HTMLAnchorElement | null {
-      while (element && element.tagName.toLowerCase() !== "a") {
+    function findClosestAnchor(element: HTMLElement | null): HTMLAnchorElement | null {
+      while (element && element.tagName.toLowerCase() !== 'a') {
         element = element.parentElement;
       }
       return element as HTMLAnchorElement;
@@ -251,28 +241,20 @@ const NextTopLoader = ({
         if (newUrl) {
           const currentUrl = window.location.href;
           // const newUrl = (anchor as HTMLAnchorElement).href;
-          const isExternalLink = !!(anchor as HTMLAnchorElement).target;
+          const isExternalLink = !!(anchor as HTMLAnchorElement);
 
           // Check for Special Schemes
-          const isSpecialScheme = [
-            "tel:",
-            "mailto:",
-            "sms:",
-            "blob:",
-            "download:",
-          ].some((scheme) => newUrl.startsWith(scheme));
-
-          const notSameHost = !isSameHostName(
-            window.location.href,
-            anchor.href
+          const isSpecialScheme = ['tel:', 'mailto:', 'sms:', 'blob:', 'download:'].some((scheme) =>
+            newUrl.startsWith(scheme)
           );
+
+          const notSameHost = !isSameHostName(window.location.href, anchor.href);
           if (notSameHost) {
             return;
           }
 
           const isAnchorOrHashAnchor =
-            isAnchorOfCurrentUrl(currentUrl, newUrl) ||
-            isHashAnchor(window.location.href, anchor.href);
+            isAnchorOfCurrentUrl(currentUrl, newUrl) || isHashAnchor(window.location.href, anchor.href);
           if (!showForHashAnchor && isAnchorOrHashAnchor) {
             return;
           }
@@ -286,7 +268,7 @@ const NextTopLoader = ({
             event.metaKey ||
             event.shiftKey ||
             event.altKey ||
-            !toAbsoluteURL(anchor.href).startsWith("http")
+            !toAbsoluteURL(anchor.href).startsWith('http')
           ) {
             NProgress.start();
             NProgress.done();
@@ -345,15 +327,15 @@ const NextTopLoader = ({
     }
 
     // Add the global click event listener
-    window.addEventListener("popstate", handleBackAndForth);
-    document.addEventListener("click", handleClick);
-    window.addEventListener("pagehide", handlePageHide);
+    window.addEventListener('popstate', handleBackAndForth);
+    document.addEventListener('click', handleClick);
+    window.addEventListener('pagehide', handlePageHide);
 
     // Clean up the global click event listener when the component is unmounted
     return (): void => {
-      document.removeEventListener("click", handleClick);
-      window.removeEventListener("pagehide", handlePageHide);
-      window.removeEventListener("popstate", handleBackAndForth);
+      document.removeEventListener('click', handleClick);
+      window.removeEventListener('pagehide', handlePageHide);
+      window.removeEventListener('popstate', handleBackAndForth);
     };
   }, []);
 
