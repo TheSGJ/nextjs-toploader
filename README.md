@@ -103,6 +103,51 @@ export default function MyApp({ Component, pageProps }) {
 
 ---
 
+## useTopLoader Hook
+
+A custom hook for handling progress indicators using NextTopLoader.
+
+## Methods
+
+| Name              | Description                                                                                                        |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------ |
+| start             | Starts the progress bar                                                                                            |
+| done              | Completes the progress bar. Can be forced to complete immediately with an optional force parameter                 |
+| remove            | Removes the progress bar element from the DOM                                                                      |
+| setProgress       | Manually sets the progress value (between 0.0 and 1.0)                                                             |
+| inc               | Increments the progress bar by a specified amount. If no amount is specified, it makes a small automatic increment |
+| trickle           | Adds small random increments to the progress bar                                                                   |
+| isStarted         | Checks if the progress bar has been started                                                                        |
+| isRendered        | Checks if the progress bar is rendered in the DOM                                                                  |
+| getPositioningCSS | Returns the positioning CSS property of the progress bar                                                           |
+
+## Example Usage
+
+```js
+'use client';
+
+import React from 'react';
+import { useTopLoader } from 'nextjs-toploader';
+
+const Component = () => {
+  const loader = useTopLoader();
+  return (
+    <div>
+      <button type="button" onClick={() => loader.start()}>
+        Start
+      </button>
+      <button type="button" onClick={() => loader.setProgress(0.5)}>
+        Set Progress
+      </button>
+    </div>
+  );
+};
+
+export default Component;
+```
+
+---
+
 ### Usage with React, Vite React or any other React Based Framework
 
 For rendering add `<NextTopLoader />` to your `return()` inside the <Router><Router/> component in `App()` in your App.js:
