@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Project
-        uses: actions/checkout@4
+        uses: actions/checkout@v4
       - name: Add problem matcher
         run: echo "::add-matcher::.github/problemMatchers/tsc.json"
 
