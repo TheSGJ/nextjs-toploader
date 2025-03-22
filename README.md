@@ -198,10 +198,11 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 - `height`: height of TopLoader in `px`.
 - `crawl`: auto incrementing behavior for the TopLoader.
 - `showSpinner`: to show spinner or not.
-- `shadow`: a smooth shadow for the TopLoader. (set to `false` to disable it)
+- `shadow`: a smooth shadow for the TopLoader. (set it to `false` to disable it)
 - `template`: to include custom HTML attributes for the TopLoader.
 - `zIndex`: defines zIndex for the TopLoader.
 - `showAtBottom`: To show the TopLoader at bottom. (increase height for the TopLoader to ensure it's visibility at the mobile devices)
+- `showForHashAnchor`: To show for "#" url or not. (set it to `false` to disable it)
 
 #### `NextTopLoaderProps` (props passed to the TopLoader)
 
@@ -229,11 +230,9 @@ This project was made possible thanks to the contributions of its code contribut
 
 <img src="https://opencollective.com/nextjs-toploader/contributors.svg?width=890&button=false" />
 
-### Financial Contributors
+### Financial Contribution
 
 ---
-
-Support this project with your organization. Your logo will show up here with a link to your website. You can Support this project on Open Collective or Equivalent Method from the below
 
 UPI ID: thesgj@upi (International UPI ID)
 
