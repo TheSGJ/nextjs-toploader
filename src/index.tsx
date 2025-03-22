@@ -241,7 +241,7 @@ const NextTopLoader = ({
         if (newUrl) {
           const currentUrl = window.location.href;
           // const newUrl = (anchor as HTMLAnchorElement).href;
-          const isExternalLink = (anchor as HTMLAnchorElement).target === '_blank';
+          const isExternalLink = !!(anchor as HTMLAnchorElement);
 
           // Check for Special Schemes
           const isSpecialScheme = ['tel:', 'mailto:', 'sms:', 'blob:', 'download:'].some((scheme) =>
