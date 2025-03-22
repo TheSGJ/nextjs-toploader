@@ -1,7 +1,7 @@
 {
   "name": "nextjs-toploader",
-  "version": "3.7.15",
-  "description": "A Next.js Top Loading Bar component made using nprogress, works with Next.js 14 and React.",
+  "version": "3.8.15",
+  "description": "A Next.js Top Loading Bar component made using nprogress, works with Next.js 15 and Next.js 14 and React.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -26,6 +26,7 @@
     "Next",
     "Next TopLoader",
     "Next.js",
+    "Next.js 15",
     "Next.js 14",
     "Next.js 13",
     "Nprogress",

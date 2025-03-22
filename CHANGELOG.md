@@ -197,3 +197,13 @@
 ### Updated
 
 - Updated README.md Documentation for `showForHashAnchor`
+
+## v3.8.15
+
+### Added
+
+- Added useTopLoader hook for managing NextTopLoader
+
+### Fixed
+
+- Fixed target being customizable
