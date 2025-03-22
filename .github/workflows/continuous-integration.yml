@@ -12,18 +12,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Project
-        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
+        uses: actions/checkout@v4
       - name: Add problem matcher
         run: echo "::add-matcher::.github/problemMatchers/eslint.json"
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Find yarn cache location
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: JS package cache
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: $(( steps.yarn-cache.outputs.dir ))
           key: $(( runner.os ))-yarn-$(( hashFiles('**/yarn.lock') ))
@@ -41,18 +41,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Project
-        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
+        uses: actions/checkout@v4
       - name: Add problem matcher
         run: echo "::add-matcher::.github/problemMatchers/tsc.json"
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Find yarn cache location
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: JS package cache
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: $(( steps.yarn-cache.outputs.dir ))
           key: $(( runner.os ))-yarn-$(( hashFiles('**/yarn.lock') ))
