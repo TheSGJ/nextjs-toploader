@@ -9,7 +9,7 @@ interface TopLoaderActions {
   trickle: () => NProgress.NProgress;
   isStarted: () => boolean;
   isRendered: () => boolean;
-  getPositioningCSS: () => "translate3d" | "translate" | "margin";
+  getPositioningCSS: () => 'translate3d' | 'translate' | 'margin';
 }
 
 export const useTopLoader = (): TopLoaderActions => {
