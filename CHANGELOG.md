@@ -207,3 +207,10 @@
 ### Fixed
 
 - Fixed target being customizable
+
+## v3.8.16
+
+### Fixed
+
+- Fixed target being customizable
+- Fixed Toploader not crawling by reverting the pr #109 that is "fix bug: target is customizable"
