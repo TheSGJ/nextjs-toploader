@@ -242,7 +242,10 @@ const NextTopLoader = ({
         if (newUrl) {
           const currentUrl = window.location.href;
           // const newUrl = (anchor as HTMLAnchorElement).href;
-          const isExternalLink = (anchor as HTMLAnchorElement).target === '_blank';
+
+          // To debug the anchor target:
+          // console.log('Given target is', (anchor as HTMLAnchorElement).target);
+          const isExternalLink = ((anchor as HTMLAnchorElement).target as React.HTMLAttributeAnchorTarget) !== '' ;
 
           // Check for Special Schemes
           const isSpecialScheme = ['tel:', 'mailto:', 'sms:', 'blob:', 'download:'].some((scheme) =>
