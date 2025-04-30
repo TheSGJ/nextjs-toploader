@@ -201,8 +201,9 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 - `shadow`: a smooth shadow for the TopLoader. (set it to `false` to disable it)
 - `template`: to include custom HTML attributes for the TopLoader.
 - `zIndex`: defines zIndex for the TopLoader.
-- `showAtBottom`: To show the TopLoader at bottom. (increase height for the TopLoader to ensure it's visibility at the mobile devices)
-- `showForHashAnchor`: To show for "#" url or not. (set it to `false` to disable it)
+- `showAtBottom`: to show the TopLoader at bottom. (increase height for the TopLoader to ensure it's visibility at the mobile devices).
+- `showForHashAnchor`: to show for "#" url or not. (set it to `false` to disable it).
+- `nonce`: to add nonces to the `<style>` tags, for [Content Security Policy](https://www.w3.org/TR/2016/REC-CSP2-20161215/#style-src-nonce-usage) (might require [skipping SSR](https://nextjs.org/docs/app/guides/lazy-loading#skipping-ssr) to avoid a [hydration error](https://nextjs.org/docs/messages/react-hydration-error)).
 
 #### `NextTopLoaderProps` (props passed to the TopLoader)
 
@@ -221,6 +222,7 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 | `zIndex`            | `number`          | `1600`                                                                                                                                  |
 | `showAtBottom`      | `boolean`         | `false`                                                                                                                                 |
 | `showForHashAnchor` | `boolean`         | `true`                                                                                                                                  |
+| `nonce`             | `string`          | `undefined`                                                                                                                             |
 
 ## Contributors
 
