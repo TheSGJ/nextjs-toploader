@@ -7,5 +7,5 @@ export const tsup: Options = {
   keepNames: true,
   sourcemap: true,
   minify: true,
-  format: ['cjs'],
+  format: ['cjs', 'esm'],
 };
