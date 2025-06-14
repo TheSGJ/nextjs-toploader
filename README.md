@@ -222,6 +222,9 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 | `showAtBottom`      | `boolean`         | `false`                                                                                                                                 |
 | `showForHashAnchor` | `boolean`         | `true`                                                                                                                                  |
 
+## GitAds Sponsored
+[![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=thesgj/nextjs-toploader@github)](https://gitads.dev/v1/ad-track?source=thesgj/nextjs-toploader@github)
+
 ## Contributors
 
 ### Code Contributors
