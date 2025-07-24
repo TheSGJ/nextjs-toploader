@@ -3,6 +3,7 @@
   "version": "3.8.16",
   "description": "A Next.js Top Loading Bar component made using nprogress, works with Next.js 15 and Next.js 14 and React.",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
     "build-lib": "tsup",
@@ -11,9 +12,21 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "exports": {
-    ".": "./dist/index.js",
-    "./app": "./dist/app.js",
-    "./pages": "./dist/pages.js"
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./app": {
+      "import": "./dist/app.mjs",
+      "require": "./dist/app.js",
+      "types": "./dist/app.d.ts"
+    },
+    "./pages": {
+      "import": "./dist/pages.mjs",
+      "require": "./dist/pages.js",
+      "types": "./dist/pages.d.ts"
+    }
   },
   "funding": {
     "url": "https://buymeacoffee.com/thesgj"
