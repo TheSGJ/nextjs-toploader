@@ -87,6 +87,10 @@ export type NextTopLoaderProps = {
    *
    */
   showForHashAnchor?: boolean;
+  /**
+   * Nonce of the inline styles for [Content Security Policy](https://www.w3.org/TR/2016/REC-CSP2-20161215/#script-src-the-nonce-attribute).
+   */
+  nonce?: string;
 };
 
 /**
@@ -112,6 +116,7 @@ const NextTopLoader = ({
   zIndex = 1600,
   showAtBottom = false,
   showForHashAnchor = true,
+  nonce,
 }: NextTopLoaderProps): React.JSX.Element => {
   const defaultColor = '#29d';
   const defaultHeight = 3;
@@ -135,7 +140,7 @@ const NextTopLoader = ({
    * CSS Styles for the NextTopLoader
    */
   const styles = (
-    <style>
+    <style nonce={nonce}>
       {`#nprogress{pointer-events:none}#nprogress .bar{background:${color};position:fixed;z-index:${zIndex};${positionStyle}left:0;width:100%;height:${height}px}#nprogress .peg{display:block;position:absolute;right:0;width:100px;height:100%;${boxShadow};opacity:1;-webkit-transform:rotate(3deg) translate(0px,-4px);-ms-transform:rotate(3deg) translate(0px,-4px);transform:rotate(3deg) translate(0px,-4px)}#nprogress .spinner{display:block;position:fixed;z-index:${zIndex};${spinnerPositionStyle}right:15px}#nprogress .spinner-icon{width:18px;height:18px;box-sizing:border-box;border:2px solid transparent;border-top-color:${color};border-left-color:${color};border-radius:50%;-webkit-animation:nprogress-spinner 400ms linear infinite;animation:nprogress-spinner 400ms linear infinite}.nprogress-custom-parent{overflow:hidden;position:relative}.nprogress-custom-parent #nprogress .bar,.nprogress-custom-parent #nprogress .spinner{position:absolute}@-webkit-keyframes nprogress-spinner{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}@keyframes nprogress-spinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}`}
     </style>
   );
@@ -245,7 +250,7 @@ const NextTopLoader = ({
 
           // To debug the anchor target:
           // console.log('Given target is', (anchor as HTMLAnchorElement).target);
-          const isExternalLink = ((anchor as HTMLAnchorElement).target as React.HTMLAttributeAnchorTarget) !== '' ;
+          const isExternalLink = ((anchor as HTMLAnchorElement).target as React.HTMLAttributeAnchorTarget) !== '';
 
           // Check for Special Schemes
           const isSpecialScheme = ['tel:', 'mailto:', 'sms:', 'blob:', 'download:'].some((scheme) =>
