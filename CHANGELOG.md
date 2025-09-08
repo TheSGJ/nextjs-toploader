@@ -214,3 +214,13 @@
 
 - Fixed target being customizable
 - Fixed Toploader not crawling by reverting the pr #109 that is "fix bug: target is customizable"
+
+## 3.9.16
+
+### Added
+
+- Added ESM build output and improve package exports for better module compatibility.
+
+### Fixed
+
+- Fixed for passing of nonce to style tag
