@@ -224,3 +224,9 @@
 ### Fixed
 
 - Fixed for passing of nonce to style tag
+
+## v3.9.17
+
+### Fixed
+
+- Fixed o.oneOfType TypeError by reverting the pr #130 that is "Added ESM build output and improve package exports for better module compatibility."
