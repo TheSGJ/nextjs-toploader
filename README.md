@@ -205,6 +205,10 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 - `showForHashAnchor`: to show for "#" url or not. (set it to `false` to disable it).
 - `nonce`: to add nonces to the `<style>` tags, for [Content Security Policy](https://www.w3.org/TR/2016/REC-CSP2-20161215/#style-src-nonce-usage) (might require [skipping SSR](https://nextjs.org/docs/app/guides/lazy-loading#skipping-ssr) to avoid a [hydration error](https://nextjs.org/docs/messages/react-hydration-error)).
 
+## Demo
+Live demo: https://nextjs-toploader-demo.vercel.app/  
+Repository: https://github.com/iliaamiri/nextjs-toploader
+
 #### `NextTopLoaderProps` (props passed to the TopLoader)
 
 | **Name**            | **Type**          | **Default Value**                                                                                                                       |
