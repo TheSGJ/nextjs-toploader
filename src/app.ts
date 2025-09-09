@@ -32,9 +32,21 @@ export const useRouter = (): AppRouterInstance => {
     [router, pathname]
   );
 
+  const back = useCallback(() => {
+    NProgress.start();
+    router.back();
+  }, [router, pathname]);
+
+  const forward = useCallback(() => {
+    NProgress.start();
+    router.forward();
+  }, [router, pathname]);
+
   return {
     ...router,
     replace,
     push,
+    back,
+    forward,
   };
 };
