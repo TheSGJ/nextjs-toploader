@@ -108,7 +108,7 @@
 
 - Resolve progress bar when navigating back from external page
 - Fixed the TopLoader for anchor url having other domain name
-- Moved histry.pushState function outside the MouseEvent, it was triggering for every mouse click
+- Moved history.pushState function outside the MouseEvent, it was triggering for every mouse click
 - Fixed TopLoader getting stuck on popstate events
 - Fixed the use of rest params and passing its type as any
 - Fixed for all Special Schemes, TopLoader will not run on special schemes now onwards
