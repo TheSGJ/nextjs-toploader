@@ -1,0 +1,88 @@
+{
+  "$schema": "https://fundingjson.org/schema/v1.1.0.json",
+  "version": "v1.0.0",
+  "entity": {
+    "type": "individual",
+    "role": "maintainer",
+    "name": "Shri Ganesh Jha",
+    "email": "sgj8434@outlook.com",
+    "description": "Full Stack Developer and Open Source Maintainer.",
+    "webpageUrl": {
+      "url": "https://github.com/TheSGJ"
+    }
+  },
+  "projects": [
+    {
+      "guid": "nextjs-toploader",
+      "name": "nextjs-toploader",
+      "description": "A Next.js Top Loading Bar component made using nprogress, works with Next.js 15 and Next.js 14 and React. It has more than 1 million monthly downloads",
+      "webpageUrl": {
+        "url": "https://github.com/TheSGJ/nextjs-toploader"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/TheSGJ/nextjs-toploader"
+      },
+      "licenses": [
+        "spdx:MIT"
+      ],
+      "tags": [
+        "nextjs",
+        "react",
+        "nprogress",
+        "component",
+        "ui"
+      ]
+    }
+  ],
+  "funding": {
+    "channels": [
+      {
+        "guid": "github-sponsors",
+        "type": "payment-provider",
+        "address": "https://github.com/sponsors/TheSGJ",
+        "description": "Sponsor via GitHub Sponsors"
+      },
+      {
+        "guid": "buymeacoffee",
+        "type": "payment-provider",
+        "address": "https://buymeacoffee.com/thesgj",
+        "description": "Buy me a coffee"
+      },
+      {
+        "guid": "opencollective",
+        "type": "payment-provider",
+        "address": "https://opencollective.com/nextjs-toploader",
+        "description": "Support via Open Collective"
+      }
+    ],
+    "plans": [
+      {
+        "guid": "sponsorship-monthly",
+        "status": "active",
+        "name": "Monthly Sponsorship",
+        "description": "Recurring monthly support for the development of nextjs-toploader.",
+        "amount": 0,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": [
+          "github-sponsors",
+          "opencollective"
+        ]
+      },
+      {
+        "guid": "sponsorship-one-time",
+        "status": "active",
+        "name": "One-time Donation",
+        "description": "One-time support for the project.",
+        "amount": 0,
+        "currency": "USD",
+        "frequency": "one-time",
+        "channels": [
+          "github-sponsors",
+          "buymeacoffee",
+          "opencollective"
+        ]
+      }
+    ]
+  }
+}
