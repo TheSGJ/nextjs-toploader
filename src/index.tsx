@@ -27,7 +27,7 @@ export type NextTopLoaderProps = {
    */
   initialPosition?: number;
   /**
-   * The increament delay speed in milliseconds.
+   * The increment delay speed in milliseconds.
    * @default 200
    */
   crawlSpeed?: number;
@@ -37,7 +37,7 @@ export type NextTopLoaderProps = {
    */
   height?: number;
   /**
-   * Auto increamenting behaviour for the TopLoader.
+   * Auto incrementing behaviour for the TopLoader.
    * @default true
    */
   crawl?: boolean;
