@@ -12,18 +12,18 @@ interface TopLoaderActions {
   getPositioningCSS: () => 'translate3d' | 'translate' | 'margin';
 }
 
-export const useTopLoader = (): TopLoaderActions => {
-  const actions: TopLoaderActions = {
-    start: () => NProgress.start(),
-    done: (force?: boolean) => NProgress.done(force),
-    remove: () => NProgress.remove(),
-    setProgress: (value: number) => NProgress.set(value),
-    inc: (amount?: number) => NProgress.inc(amount),
-    trickle: () => NProgress.trickle(),
-    isStarted: () => NProgress.isStarted(),
-    isRendered: () => NProgress.isRendered(),
-    getPositioningCSS: () => NProgress.getPositioningCSS(),
-  };
+const actions: TopLoaderActions = {
+  start: () => NProgress.start(),
+  done: (force?: boolean) => NProgress.done(force),
+  remove: () => NProgress.remove(),
+  setProgress: (value: number) => NProgress.set(value),
+  inc: (amount?: number) => NProgress.inc(amount),
+  trickle: () => NProgress.trickle(),
+  isStarted: () => NProgress.isStarted(),
+  isRendered: () => NProgress.isRendered(),
+  getPositioningCSS: () => NProgress.getPositioningCSS(),
+};
 
+export const useTopLoader = (): TopLoaderActions => {
   return actions;
 };
