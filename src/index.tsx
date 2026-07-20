@@ -346,7 +346,7 @@ const NextTopLoader = ({
       window.removeEventListener('pagehide', handlePageHide);
       window.removeEventListener('popstate', handleBackAndForth);
     };
-  }, []);
+  }, [crawl, crawlSpeed, easing, initialPosition, showSpinner, speed, template]);
 
   return styles;
 };
