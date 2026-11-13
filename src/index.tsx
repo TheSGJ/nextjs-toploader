@@ -268,6 +268,11 @@ const NextTopLoader = ({
             return;
           }
 
+          const isDownloadLink = anchor.hasAttribute('download');
+          if (isDownloadLink) {
+            return;
+          }
+
           if (
             newUrl === currentUrl ||
             isExternalLink ||
