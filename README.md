@@ -224,6 +224,18 @@ If no props are passed to `<NextTopLoader />`, below is the default configuratio
 | `showForHashAnchor` | `boolean`         | `true`                                                                                                                                  |
 | `nonce`             | `string`          | `undefined`                                                                                                                             |
 
+### Disabling the Loader for Specific Links
+
+To disable the top loader for specific links, add the `data-no-loader` attribute to the `<Link>` or `<a>` component:
+
+```jsx
+<Link href="/privacy" data-no-loader>
+  Privacy
+</Link>
+```
+
+When clicked, navigation proceeds normally without triggering the top loading bar.
+
 ## Contributors
 
 ### Code Contributors

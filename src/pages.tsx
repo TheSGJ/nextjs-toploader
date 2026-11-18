@@ -35,8 +35,8 @@ export const PagesTopLoader = ({
     !shadow && shadow !== undefined
       ? ''
       : shadow
-        ? `box-shadow:${shadow}`
-        : `box-shadow:0 0 10px ${color},0 0 5px ${color}`;
+      ? `box-shadow:${shadow}`
+      : `box-shadow:0 0 10px ${color},0 0 5px ${color}`;
 
   // Check if to show at bottom
   const positionStyle = showAtBottom ? 'bottom: 0;' : 'top: 0;';
@@ -64,15 +64,45 @@ export const PagesTopLoader = ({
         '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>',
     });
 
-    const progressStarted = () => NProgress.start();
-    const progressComplete = () => NProgress.done(true);
+    let skipNextProgress = false;
 
+    function handleClick(event: MouseEvent): void {
+      try {
+        let element: HTMLElement | null = event.target as HTMLElement;
+        while (element && element.tagName.toLowerCase() !== 'a') {
+          element = element.parentElement;
+        }
+        const anchor = element as HTMLAnchorElement | null;
+        if (anchor && anchor.hasAttribute('data-no-loader') && anchor.getAttribute('data-no-loader') !== 'false') {
+          skipNextProgress = true;
+          setTimeout(() => {
+            skipNextProgress = false;
+          }, 100);
+        }
+      } catch {
+        skipNextProgress = false;
+      }
+    }
+
+    const progressStarted = () => {
+      if (skipNextProgress) {
+        skipNextProgress = false;
+        return;
+      }
+      NProgress.start();
+    };
+    const progressComplete = () => {
+      skipNextProgress = false;
+      NProgress.done(true);
+    };
+
+    document.addEventListener('click', handleClick);
     Router.events.on('routeChangeStart', progressStarted);
     Router.events.on('routeChangeComplete', progressComplete);
     Router.events.on('routeChangeError', progressComplete);
 
     return () => {
-      // Clean up the global click event listener when the component is unmounted
+      document.removeEventListener('click', handleClick);
       Router.events.off('routeChangeStart', progressStarted);
       Router.events.off('routeChangeComplete', progressComplete);
       Router.events.off('routeChangeError', progressComplete);

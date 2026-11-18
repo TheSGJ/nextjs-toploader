@@ -8,6 +8,7 @@
     "build-lib": "tsup",
     "lint": "eslint --fix --cache src/",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "test": "node --test tests/*.test.js",
     "typecheck": "tsc -p tsconfig.json"
   },
   "exports": {
