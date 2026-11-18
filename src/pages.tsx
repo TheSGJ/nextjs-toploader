@@ -23,9 +23,13 @@ export const PagesTopLoader = ({
   zIndex = 1600,
   showAtBottom = false,
   nonce,
+  targetElement,
 }: NextTopLoaderProps): JSX.Element => {
   const defaultColor = '#29d';
   const defaultHeight = 3;
+
+  const targetElementRef = React.useRef(targetElement);
+  targetElementRef.current = targetElement;
 
   const color = propColor ?? defaultColor;
   const height = propHeight ?? defaultHeight;
@@ -35,8 +39,8 @@ export const PagesTopLoader = ({
     !shadow && shadow !== undefined
       ? ''
       : shadow
-        ? `box-shadow:${shadow}`
-        : `box-shadow:0 0 10px ${color},0 0 5px ${color}`;
+      ? `box-shadow:${shadow}`
+      : `box-shadow:0 0 10px ${color},0 0 5px ${color}`;
 
   // Check if to show at bottom
   const positionStyle = showAtBottom ? 'bottom: 0;' : 'top: 0;';
@@ -52,6 +56,33 @@ export const PagesTopLoader = ({
   );
 
   React.useEffect((): ReturnType<React.EffectCallback> => {
+    let currentParent = targetElementRef.current ?? 'body';
+
+    try {
+      Object.defineProperty(NProgress.settings, 'parent', {
+        get() {
+          const target = targetElementRef.current ?? currentParent;
+          if (target && target !== 'body') {
+            try {
+              if (document.querySelector(target)) {
+                return target;
+              }
+            } catch {
+              return 'body';
+            }
+          }
+          return 'body';
+        },
+        set(val: string) {
+          currentParent = val;
+        },
+        configurable: true,
+        enumerable: true,
+      });
+    } catch {
+      // In environments where defineProperty fails, fall back gracefully
+    }
+
     NProgress.configure({
       showSpinner: showSpinner ?? true,
       trickle: crawl ?? true,
@@ -62,6 +93,7 @@ export const PagesTopLoader = ({
       template:
         template ??
         '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>',
+      parent: targetElementRef.current ?? 'body',
     });
 
     const progressStarted = () => NProgress.start();
@@ -76,6 +108,25 @@ export const PagesTopLoader = ({
       Router.events.off('routeChangeStart', progressStarted);
       Router.events.off('routeChangeComplete', progressComplete);
       Router.events.off('routeChangeError', progressComplete);
+
+      try {
+        const currentTarget = targetElementRef.current;
+        if (currentTarget && currentTarget !== 'body') {
+          const parentEl = document.querySelector(currentTarget);
+          if (parentEl) {
+            parentEl.classList.remove('nprogress-custom-parent');
+          }
+        }
+      } catch {
+        // Ignore invalid selectors
+      }
+
+      try {
+        delete (NProgress.settings as { parent?: string }).parent;
+      } catch {
+        // If delete fails, continue
+      }
+      NProgress.configure({ parent: 'body' });
     };
   }, []);
 
@@ -95,4 +146,6 @@ PagesTopLoader.propTypes = {
   shadow: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   zIndex: PropTypes.number,
   showAtBottom: PropTypes.bool,
+  nonce: PropTypes.string,
+  targetElement: PropTypes.string,
 };
