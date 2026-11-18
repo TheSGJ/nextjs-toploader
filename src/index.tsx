@@ -91,6 +91,12 @@ export type NextTopLoaderProps = {
    * Nonce of the inline styles for [Content Security Policy](https://www.w3.org/TR/2016/REC-CSP2-20161215/#script-src-the-nonce-attribute).
    */
   nonce?: string;
+  /**
+   * CSS selector for the custom target DOM element where the TopLoader will be rendered.
+   * If not provided or element is not found, it defaults to "body".
+   * @default "body"
+   */
+  targetElement?: string;
 };
 
 /**
@@ -117,9 +123,13 @@ const NextTopLoader = ({
   showAtBottom = false,
   showForHashAnchor = true,
   nonce,
+  targetElement,
 }: NextTopLoaderProps): React.JSX.Element => {
   const defaultColor = '#29d';
   const defaultHeight = 3;
+
+  const targetElementRef = React.useRef(targetElement);
+  targetElementRef.current = targetElement;
 
   const color = propColor ?? defaultColor;
   const height = propHeight ?? defaultHeight;
@@ -129,8 +139,8 @@ const NextTopLoader = ({
     !shadow && shadow !== undefined
       ? ''
       : shadow
-        ? `box-shadow:${shadow}`
-        : `box-shadow:0 0 10px ${color},0 0 5px ${color}`;
+      ? `box-shadow:${shadow}`
+      : `box-shadow:0 0 10px ${color},0 0 5px ${color}`;
 
   // Check if to show at bottom
   const positionStyle = showAtBottom ? 'bottom: 0;' : 'top: 0;';
@@ -179,6 +189,33 @@ const NextTopLoader = ({
   };
 
   React.useEffect((): ReturnType<React.EffectCallback> => {
+    let currentParent = targetElementRef.current ?? 'body';
+
+    try {
+      Object.defineProperty(NProgress.settings, 'parent', {
+        get() {
+          const target = targetElementRef.current ?? currentParent;
+          if (target && target !== 'body') {
+            try {
+              if (document.querySelector(target)) {
+                return target;
+              }
+            } catch {
+              return 'body';
+            }
+          }
+          return 'body';
+        },
+        set(val: string) {
+          currentParent = val;
+        },
+        configurable: true,
+        enumerable: true,
+      });
+    } catch {
+      // In environments where defineProperty fails, fall back gracefully
+    }
+
     NProgress.configure({
       showSpinner: showSpinner ?? true,
       trickle: crawl ?? true,
@@ -189,6 +226,7 @@ const NextTopLoader = ({
       template:
         template ??
         '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>',
+      parent: targetElementRef.current ?? 'body',
     });
 
     /**
@@ -345,6 +383,25 @@ const NextTopLoader = ({
       document.removeEventListener('click', handleClick);
       window.removeEventListener('pagehide', handlePageHide);
       window.removeEventListener('popstate', handleBackAndForth);
+
+      try {
+        const currentTarget = targetElementRef.current;
+        if (currentTarget && currentTarget !== 'body') {
+          const parentEl = document.querySelector(currentTarget);
+          if (parentEl) {
+            parentEl.classList.remove('nprogress-custom-parent');
+          }
+        }
+      } catch {
+        // Ignore invalid selectors
+      }
+
+      try {
+        delete (NProgress.settings as { parent?: string }).parent;
+      } catch {
+        // If delete fails, continue
+      }
+      NProgress.configure({ parent: 'body' });
     };
   }, []);
 
@@ -365,4 +422,7 @@ NextTopLoader.propTypes = {
   shadow: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   zIndex: PropTypes.number,
   showAtBottom: PropTypes.bool,
+  showForHashAnchor: PropTypes.bool,
+  nonce: PropTypes.string,
+  targetElement: PropTypes.string,
 };
